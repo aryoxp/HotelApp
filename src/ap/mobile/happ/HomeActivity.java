@@ -12,6 +12,7 @@ public class HomeActivity extends Activity {
 
 	private Typeface fontNormal;
 	private Typeface fontBold;
+	@SuppressWarnings("unused")
 	private Typeface fontItalic;
 	
 	private Context context;
