@@ -1,0 +1,67 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".HomeActivity" >
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Welcome to Hotel Name"
+        android:textColor="#AAFFFFFF"
+        android:textSize="48sp"
+        android:background="#22000000"
+        android:typeface="sans" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:columnCount="4"
+        android:useDefaultMargins="true" >
+
+        <ImageView
+            android:id="@+id/menuTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:src="@drawable/monitor" />
+
+        <ImageView
+            android:id="@+id/menuRadio"
+            android:layout_gravity="left"
+            android:src="@drawable/antenna2" />
+
+        <ImageView
+            android:id="@+id/menuVOD"
+            android:layout_gravity="left"
+            android:src="@drawable/film_reel" />
+
+        <ImageView
+            android:id="@+id/menuInfo"
+            android:layout_gravity="left"
+            android:src="@drawable/info" />
+
+        <TextView
+            android:id="@+id/selectedMenuText"
+            android:background="#22000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="4"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Video on Demand"
+            android:textColor="#FFFFFF"
+            android:textSize="36dp" />
+
+</GridLayout>
+
+</FrameLayout>

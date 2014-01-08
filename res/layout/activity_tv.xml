@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg" >
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#22000000"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:text="Internet TV"
+        android:textColor="#AAFFFFFF"
+        android:textSize="48sp"
+        android:typeface="sans" />
+
+    <GridView
+        android:id="@+id/GridView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="96dp"
+        android:numColumns="5" >
+
+    </GridView>
+
+</FrameLayout>
