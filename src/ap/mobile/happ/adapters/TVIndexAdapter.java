@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import ap.mobile.happ.R;
 import ap.mobile.happ.base.TVMedia;
@@ -37,14 +39,33 @@ public class TVIndexAdapter extends BaseAdapter {
 		return this.TVMedias.indexOf(getItem(arg0));
 	}
 
+	private class TVItemViewHolder {
+		TextView label;
+		@SuppressWarnings("unused")
+		ImageView logo;
+	}
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		
+		Typeface fontNormal = Typeface.createFromAsset(((Activity)this.context).getAssets(), "fonts/Helvetica-Medium-Condensed.ttf"); 
+		TVItemViewHolder vh = null;
 		LayoutInflater inflater = (LayoutInflater)
 	            context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-		View itemView = inflater.inflate(R.layout.item_tv, null);
-		TextView label = (TextView) itemView.findViewById(R.id.label);
-		label.setText(this.TVMedias.get(position).name);
-		return itemView;
+		
+		if(convertView == null) {			
+			convertView = inflater.inflate(R.layout.item_tv, null);			
+			vh = new TVItemViewHolder();
+			vh.label = (TextView) convertView.findViewById(R.id.label);
+			vh.label.setTypeface(fontNormal);
+			convertView.setTag(vh);			
+		} else {
+			vh = (TVItemViewHolder) convertView.getTag();
+		}
+
+		TVMedia media = this.TVMedias.get(position);
+		vh.label.setText(media.name);
+		return convertView;
 	}
 
 }

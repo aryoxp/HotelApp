@@ -24,7 +24,7 @@ public class TVActivity extends Activity {
         fontItalic = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-CondLightItalic.ttf"); 
         
         TextView welcomeText = (TextView)this.findViewById(R.id.welcomeText);
-        TextView loadingText = (TextView)this.findViewById(R.id.textLoading);
+        TextView loadingText = (TextView)this.findViewById(R.id.loadingText);
         GridView gv = (GridView)this.findViewById(R.id.GridView1);
         
         welcomeText.setTypeface(fontNormal);

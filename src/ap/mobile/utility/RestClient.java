@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 public class RestClient {
 	
 	// Source: http://www.vogella.com/tutorials/AndroidNetworking/article.html
@@ -51,4 +54,23 @@ public class RestClient {
 		}
 		return result;
 	} 
+	
+	// http://stackoverflow.com/questions/8992964/android-load-from-url-to-bitmap
+	public static Bitmap getBitmapFromURL(String src) {
+	    try {
+	        URL url = new URL(src);
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setDoInput(true);
+	        connection.setConnectTimeout(30000);
+	        connection.setReadTimeout(30000);
+	        connection.setInstanceFollowRedirects(true);
+	        connection.connect();
+	        InputStream input = connection.getInputStream();
+	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+	        return myBitmap;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 }
