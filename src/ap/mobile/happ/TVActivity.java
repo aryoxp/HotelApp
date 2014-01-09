@@ -31,6 +31,6 @@ public class TVActivity extends Activity {
         loadingText.setTypeface(fontBold);
         
         TVIndexTask indexTask = new TVIndexTask(this, gv);
-        indexTask.execute("http://localhost/iptv/index.php/service/index/tv");
+        indexTask.execute("http://175.45.187.246/iptv/index.php/service/index/tv");
 	}
 }

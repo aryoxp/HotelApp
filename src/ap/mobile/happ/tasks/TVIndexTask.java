@@ -16,6 +16,7 @@ import android.widget.Toast;
 import ap.mobile.happ.R;
 import ap.mobile.happ.adapters.TVIndexAdapter;
 import ap.mobile.happ.base.TVMedia;
+import ap.mobile.happ.jsonparser.TVParser;
 import ap.mobile.utility.RestClient;
 
 /**
@@ -42,28 +43,31 @@ public class TVIndexTask extends AsyncTask<String, Integer, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		GridView gv = (GridView) this.view;
-		ArrayList<TVMedia> TVMedias = new ArrayList<TVMedia>();
-		
-		// TODO: Parse result to JSON Object, then JSON Object to array of TV media.
-		// TODO: Remove dummy data after
-		
-		TVMedias.add(new TVMedia("RCTI", "Dummy Description", "Dummy file URL", "Dummy Stream"));
-		TVMedias.add(new TVMedia("Fuji TV", "Dummy Description", "Dummy file URL", "Dummy Stream"));
-		TVMedias.add(new TVMedia("HBO Family", "Dummy Description", "Dummy file URL", "Dummy Stream"));
-		
-		TVIndexAdapter adapter = new TVIndexAdapter(this.context, TVMedias);
-		gv.setAdapter(adapter);
-		gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				TVIndexAdapter adapter = (TVIndexAdapter) parent.getAdapter();
-				TVMedia media = (TVMedia) adapter.getItem(position);
-				Toast.makeText(context, media.name, Toast.LENGTH_SHORT).show();
-			}
-
-		});
+		if(!result.equals(null)) {
+			ArrayList<TVMedia> TVMedias = TVParser.ParseIndex(result);
+			
+			
+			// TODO: Parse result to JSON Object, then JSON Object to array of TV media.
+			// TODO: Remove dummy data after
+			
+			TVMedias.add(new TVMedia("RCTI", "Dummy Description", "Dummy file URL", "Dummy Stream"));
+			TVMedias.add(new TVMedia("Fuji TV", "Dummy Description", "Dummy file URL", "Dummy Stream"));
+			TVMedias.add(new TVMedia("HBO Family", "Dummy Description", "Dummy file URL", "Dummy Stream"));
+			
+			TVIndexAdapter adapter = new TVIndexAdapter(this.context, TVMedias);
+			gv.setAdapter(adapter);
+			gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position,
+						long id) {
+					TVIndexAdapter adapter = (TVIndexAdapter) parent.getAdapter();
+					TVMedia media = (TVMedia) adapter.getItem(position);
+					Toast.makeText(context, media.name, Toast.LENGTH_SHORT).show();
+				}
+	
+			});
+		}
 		
 		TextView loadingText = (TextView) ((Activity)this.context).findViewById(R.id.loadingText);
 		loadingText.setVisibility(View.INVISIBLE);
