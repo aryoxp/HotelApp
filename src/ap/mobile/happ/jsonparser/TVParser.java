@@ -16,11 +16,14 @@ public class TVParser {
 			JSONArray tvs = object.getJSONArray("media");
 			for(int i=0; i<tvs.length(); i++){
 				JSONObject tvObject = tvs.getJSONObject(i);
+				String id = tvObject.getString("id");
 				String name = tvObject.getString("name");
 				String description = tvObject.getString("description");
 				String file = tvObject.getString("file");
 				String stream = tvObject.getString("stream");
-				TVMedia tv = new TVMedia(name, description, file, stream);
+				String logo = tvObject.getString("logo");
+				TVMedia tv = new TVMedia(name, description, file, stream, logo);
+				tv.id = id;
 				list.add(tv);
 			}
 			

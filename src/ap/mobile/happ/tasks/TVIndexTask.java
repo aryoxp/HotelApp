@@ -50,9 +50,9 @@ public class TVIndexTask extends AsyncTask<String, Integer, String> {
 			// TODO: Parse result to JSON Object, then JSON Object to array of TV media.
 			// TODO: Remove dummy data after
 			
-			TVMedias.add(new TVMedia("RCTI", "Dummy Description", "Dummy file URL", "Dummy Stream"));
-			TVMedias.add(new TVMedia("Fuji TV", "Dummy Description", "Dummy file URL", "Dummy Stream"));
-			TVMedias.add(new TVMedia("HBO Family", "Dummy Description", "Dummy file URL", "Dummy Stream"));
+			//TVMedias.add(new TVMedia("RCTI", "Dummy Description", "Dummy file URL", "Dummy Stream"));
+			//TVMedias.add(new TVMedia("Fuji TV", "Dummy Description", "Dummy file URL", "Dummy Stream"));
+			//TVMedias.add(new TVMedia("HBO Family", "Dummy Description", "Dummy file URL", "Dummy Stream"));
 			
 			TVIndexAdapter adapter = new TVIndexAdapter(this.context, TVMedias);
 			gv.setAdapter(adapter);

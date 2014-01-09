@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import ap.mobile.happ.R;
 import ap.mobile.happ.base.TVMedia;
+import ap.mobile.happ.tasks.ImageLoader;
 
 public class TVIndexAdapter extends BaseAdapter {
 
@@ -41,7 +42,6 @@ public class TVIndexAdapter extends BaseAdapter {
 
 	private class TVItemViewHolder {
 		TextView label;
-		@SuppressWarnings("unused")
 		ImageView logo;
 	}
 	
@@ -58,6 +58,7 @@ public class TVIndexAdapter extends BaseAdapter {
 			vh = new TVItemViewHolder();
 			vh.label = (TextView) convertView.findViewById(R.id.label);
 			vh.label.setTypeface(fontNormal);
+			vh.logo = (ImageView) convertView.findViewById(R.id.logo);
 			convertView.setTag(vh);			
 		} else {
 			vh = (TVItemViewHolder) convertView.getTag();
@@ -65,6 +66,11 @@ public class TVIndexAdapter extends BaseAdapter {
 
 		TVMedia media = this.TVMedias.get(position);
 		vh.label.setText(media.name);
+		
+		String logoPath = media.logo;
+		ImageLoader iLoader = new ImageLoader();
+		iLoader.execute(vh.logo, "http://175.45.187.246/"+logoPath);
+		
 		return convertView;
 	}
 

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="wrap_content"
+    android:layout_width="200dp"
+    android:layout_height="300dp"
+    android:background="#2FFF"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:orientation="vertical" >
 
     <ImageView
-        android:contentDescription="@string/loading"
         android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#3CCC"
+        android:contentDescription="@string/loading"
         android:padding="10dp"
-        android:src="@drawable/fnn" />
+        android:scaleType="center"
+        android:src="@drawable/loading" />
 
     <TextView
         android:id="@+id/label"
