@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import ap.mobile.happ.tasks.WeatherTask;
 
 public class HomeActivity extends Activity {
 
-	private Typeface fontNormal;
-	private Typeface fontBold;
-	@SuppressWarnings("unused")
-	private Typeface fontItalic;
-	
 	private Context context;
 	
     @Override
@@ -36,11 +33,29 @@ public class HomeActivity extends Activity {
 			}
 		});
         
-        fontNormal = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-CondLight.ttf");
-        fontBold = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-CondBold.ttf"); 
-        fontItalic = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-CondLightItalic.ttf"); 
+        View menuRadio = (View) this.findViewById(R.id.menuRadio);
+        menuRadio.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(context, RadioActivity.class);
+				context.startActivity(i);
+			}
+		});
+        		
+        Typeface helveticaCondensed = Typeface.createFromAsset(getAssets(), "fonts/Helvetica-Condensed.ttf");
         
-        welcomeText.setTypeface(fontNormal);
-        selectedMenuText.setTypeface(fontBold);
+        welcomeText.setTypeface(helveticaCondensed);
+        selectedMenuText.setTypeface(helveticaCondensed);
+        
+        ImageView iconView = (ImageView) this.findViewById(R.id.weatherIcon);
+        TextView cityView = (TextView) this.findViewById(R.id.cityName);
+        TextView weatherView = (TextView) this.findViewById(R.id.weatherText);
+        TextView weatherDescriptionText = (TextView) this.findViewById(R.id.weatherDescription);
+        
+        cityView.setTypeface(helveticaCondensed);
+        
+        WeatherTask weatherTask = new WeatherTask(this, iconView, cityView, weatherView, weatherDescriptionText);
+        weatherTask.execute("http://api.openweathermap.org/data/2.5/weather?q=Malang,id&units=metric");
     }
 }

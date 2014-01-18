@@ -68,9 +68,9 @@ public class RestClient {
 	        InputStream input = connection.getInputStream();
 	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
 	        return myBitmap;
-	    } catch (IOException e) {
+	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return null;
 	    }
+	    return null;
 	}
 }

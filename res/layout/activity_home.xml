@@ -9,21 +9,21 @@
         android:id="@+id/welcomeText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="#22000000"
+        android:paddingBottom="10dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:text="Welcome to Hotel Name"
         android:textColor="#AAFFFFFF"
         android:textSize="48sp"
-        android:background="#22000000"
         android:typeface="sans" />
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="120dp"
         android:columnCount="4"
         android:useDefaultMargins="true" >
 
@@ -63,5 +63,52 @@
             android:textSize="36dp" />
 
 </GridLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="60dp"
+        android:gravity="right" >
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/m_weather_04" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical|bottom"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/cityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Malang"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="48sp" />
+
+            <TextView
+                android:id="@+id/weatherText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25°C, Clear"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/weatherDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/blank" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

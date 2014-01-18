@@ -66,11 +66,15 @@ public class TVIndexAdapter extends BaseAdapter {
 
 		TVMedia media = this.TVMedias.get(position);
 		vh.label.setText(media.name);
-		
-		String logoPath = media.logo;
-		ImageLoader iLoader = new ImageLoader();
-		iLoader.execute(vh.logo, "http://175.45.187.246/"+logoPath);
-		
+		try {
+			String logoPath = media.logo;
+			if(!logoPath.equals(null)) {
+				ImageLoader iLoader = new ImageLoader();
+				iLoader.execute(vh.logo, "http://175.45.187.246/"+logoPath);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return convertView;
 	}
 

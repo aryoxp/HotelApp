@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg" >
+    android:background="@drawable/bg"
+    >
 
     <TextView
         android:id="@+id/welcomeText"
@@ -13,7 +14,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="10dp"
-        android:text="Internet TV"
+        android:text="Internet Radio"
         android:textColor="#AAFFFFFF"
         android:textSize="48sp"
         android:typeface="sans" />
@@ -27,9 +28,11 @@
         android:layout_marginRight="50dp"
         android:layout_marginTop="96dp"
         android:numColumns="5" >
+
     </GridView>
-    -->
-		<android.support.v4.view.ViewPager
+	 -->
+
+	<android.support.v4.view.ViewPager
 	    android:id="@+id/viewpager"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
@@ -42,6 +45,7 @@
             android:layout_gravity="top" />
 	    
 	</android.support.v4.view.ViewPager>
+	
     <TextView
         android:id="@+id/loadingText"
         android:layout_width="wrap_content"

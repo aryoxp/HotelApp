@@ -22,6 +22,10 @@ public class TVParser {
 				String file = tvObject.getString("file");
 				String stream = tvObject.getString("stream");
 				String logo = tvObject.getString("logo");
+				if(logo == "null") logo = null;
+				if(stream == "null") stream = null;
+				if(file == "null") file = null;
+					
 				TVMedia tv = new TVMedia(name, description, file, stream, logo);
 				tv.id = id;
 				list.add(tv);
