@@ -1,0 +1,114 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".HomeActivity" >
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#22000000"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:text="Welcome to Hotel Name"
+        android:textColor="#AAFFFFFF"
+        android:textSize="48sp"
+        android:typeface="sans" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:columnCount="4"
+        android:useDefaultMargins="true" >
+
+        <ImageView
+            android:id="@+id/menuTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:src="@drawable/monitor" />
+
+        <ImageView
+            android:id="@+id/menuRadio"
+            android:layout_gravity="left"
+            android:src="@drawable/antenna2" />
+
+        <ImageView
+            android:id="@+id/menuVOD"
+            android:layout_gravity="left"
+            android:src="@drawable/film_reel" />
+
+        <ImageView
+            android:id="@+id/menuInfo"
+            android:layout_gravity="left"
+            android:src="@drawable/info" />
+
+        <TextView
+            android:id="@+id/selectedMenuText"
+            android:background="#22000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="4"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Video on Demand"
+            android:textColor="#FFFFFF"
+            android:textSize="36dp" />
+
+</GridLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="60dp"
+        android:gravity="right" >
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/m_weather_04" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical|bottom"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/cityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Malang"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="48sp" />
+
+            <TextView
+                android:id="@+id/weatherText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25°C, Clear"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/weatherDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/blank" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
