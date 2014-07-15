@@ -7,18 +7,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import ap.mobile.happ.TVFragment;
+import ap.mobile.happ.BrowseTVFragment;
+import ap.mobile.happ.TVItemFragment;
 import ap.mobile.happ.base.TVMedia;
 
 public class TVPagerAdapter extends FragmentPagerAdapter {
 
-	private ArrayList<TVMedia> TVMedias;
+	private ArrayList<TVMedia> tvMedias;
 	private Context context;
 	private int perpage = 10;
 	
 	public TVPagerAdapter(FragmentManager fm, ArrayList<TVMedia> TVMedias, Context context) {
 		super(fm);
-		this.TVMedias = TVMedias;
+		this.tvMedias = TVMedias;
 		this.context = context;
 	}
 	
@@ -28,18 +29,12 @@ public class TVPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
-		TVFragment fragment = new TVFragment();
-		Bundle bundle = new Bundle();
-		bundle.putInt("page", position + 1);
-		fragment.setArguments(bundle);
-		fragment.setContext(this.context);
-		fragment.setMedias(this.TVMedias);
-		return fragment;
+		return TVItemFragment.newInstance(tvMedias.get(position));
 	}
 
 	@Override
 	public int getCount() {
-		double count = this.TVMedias.size();
+		double count = this.tvMedias.size();
 		int size = (int) Math.ceil(count/(double)this.perpage);
 		return size;
 	}

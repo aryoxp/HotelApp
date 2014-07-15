@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import ap.mobile.happ.R;
 import ap.mobile.happ.base.TVMedia;
 import ap.mobile.happ.tasks.ImageLoader;
@@ -48,7 +49,7 @@ public class TVIndexAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-		Typeface fontNormal = Typeface.createFromAsset(((Activity)this.context).getAssets(), "fonts/Helvetica-Medium-Condensed.ttf"); 
+		//Typeface fontNormal = Typeface.createFromAsset(((Activity)this.context).getAssets(), "fonts/Helvetica-Medium-Condensed.ttf"); 
 		TVItemViewHolder vh = null;
 		LayoutInflater inflater = (LayoutInflater)
 	            context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -57,7 +58,7 @@ public class TVIndexAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.item_tv, null);			
 			vh = new TVItemViewHolder();
 			vh.label = (TextView) convertView.findViewById(R.id.label);
-			vh.label.setTypeface(fontNormal);
+			//vh.label.setTypeface(fontNormal);
 			vh.logo = (ImageView) convertView.findViewById(R.id.logo);
 			convertView.setTag(vh);			
 		} else {
@@ -69,8 +70,9 @@ public class TVIndexAdapter extends BaseAdapter {
 		try {
 			String logoPath = media.logo;
 			if(!logoPath.equals(null)) {
+				//Toast.makeText(this.context, logoPath, Toast.LENGTH_LONG).show();
 				ImageLoader iLoader = new ImageLoader();
-				iLoader.execute(vh.logo, "http://175.45.187.246/"+logoPath);
+				iLoader.execute(vh.logo, "http://ubcreative.net/apps/hotel/upload/"+logoPath);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

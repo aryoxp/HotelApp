@@ -47,10 +47,12 @@ public class WeatherTask extends AsyncTask<String, Void, String> {
 			Weather w = WeatherParser.Parse(result);
 			if(!w.equals(null)) {
 				int temp = (int) Math.ceil(w.temperature);
-				
-				this.weatherView.setText(w.main + ", " + Integer.toString(temp) + (char) 0x00B0 + "C");
-				this.weatherDescription.setText(w.description);
-				this.cityView.setText(w.city);
+				if(this.weatherView != null)
+					this.weatherView.setText(w.main + ", " + Integer.toString(temp) + (char) 0x00B0 + "C");
+				if(this.weatherDescription != null)
+					this.weatherDescription.setText(w.description);
+				if(this.cityView != null)
+					this.cityView.setText(w.city);
 				
 				switch(w.id){
 					case 200:

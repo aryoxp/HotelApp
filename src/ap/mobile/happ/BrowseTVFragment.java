@@ -16,27 +16,49 @@ import android.widget.GridView;
 import android.widget.Toast;
 import ap.mobile.happ.adapters.TVIndexAdapter;
 import ap.mobile.happ.base.TVMedia;
+import ap.mobile.happ.interfaces.MediaTVIndexInterface;
+import ap.mobile.happ.tasks.TVIndexTask;
 
-public class TVFragment extends Fragment {
+public class BrowseTVFragment extends Fragment implements MediaTVIndexInterface {
 	
 	private Context context;
-	private ArrayList<TVMedia> TVMedias;
+	private ArrayList<TVMedia> tvMedias = new ArrayList<TVMedia>();
 	private int perpage = 10;
 	private int page = 0;
 	
-	public TVFragment(){}
+	private View v;
+	private GridView gv;
 	
-	public void setContext(Context context){
-		this.context = context;
+	public static BrowseTVFragment getInstance(Context context) {
+		BrowseTVFragment fragment = new BrowseTVFragment();
+		fragment.setContext(context);
+		return fragment;
 	}
 	
-	public void setMedias(ArrayList<TVMedia> medias) {
-		this.TVMedias = medias;
+	private void setContext(Context context){
+		this.context = context;
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		this.v = inflater.inflate(R.layout.fragment_index_tv, container, false);
+		this.gv = (GridView) v.findViewById(R.id.indexTvGrid);
+		return this.v;
+	}
+	
+	@Override
+	public void onResume() {
+		TVIndexTask indexTask = new TVIndexTask(this);
+        //indexTask.execute("http://175.45.187.246/iptv/index.php/service/index/tv");
+		indexTask.execute("http://ubcreative.net/apps/hotel/json/tv/");
+		super.onResume();
+	}
+	
+	@Override
+	public void onMediaLoaded(ArrayList<TVMedia> medias) {
+		this.tvMedias = medias;
+		/*
 		Bundle bundle = this.getArguments();
 		this.page = bundle.getInt("page");
 		int offset = (this.page-1)*perpage;
@@ -48,8 +70,7 @@ public class TVFragment extends Fragment {
 			TVMedia media = this.TVMedias.get(i);
 			medias.add(media);
 		}
-		View v = inflater.inflate(R.layout.fragment_index_tv, container, false);
-		GridView gv = (GridView) v.findViewById(R.id.IndexGrid);
+		*/
 		
 		TVIndexAdapter adapter = new TVIndexAdapter(this.context, medias);
 		gv.setAdapter(adapter);
@@ -74,6 +95,6 @@ public class TVFragment extends Fragment {
 			
 		});
 		
-		return v;
 	}
+
 }

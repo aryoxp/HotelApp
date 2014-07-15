@@ -33,9 +33,9 @@ public class ImageLoader extends AsyncTask<Object, Integer, Bitmap> {
 
 	@Override
 	protected void onPostExecute(Bitmap result) {
-		if(!result.equals(null) && !this.container.equals(null))
+		if(result != null && this.container != null) {
 			this.container.setImageBitmap(result);
 			this.container.setScaleType(this.scale);
-		// TODO: else display broken image indicator.
+		} // TODO: else display broken image indicator.
 	}
 }

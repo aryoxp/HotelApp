@@ -49,13 +49,12 @@ public class HomeActivity extends Activity {
         selectedMenuText.setTypeface(helveticaCondensed);
         
         ImageView iconView = (ImageView) this.findViewById(R.id.weatherIcon);
-        TextView cityView = (TextView) this.findViewById(R.id.cityName);
+        //TextView cityView = (TextView) this.findViewById(R.id.cityName);
         TextView weatherView = (TextView) this.findViewById(R.id.weatherText);
-        TextView weatherDescriptionText = (TextView) this.findViewById(R.id.weatherDescription);
+        //TextView weatherDescriptionText = (TextView) this.findViewById(R.id.weatherDescription);        
+        //cityView.setTypeface(helveticaCondensed);
         
-        cityView.setTypeface(helveticaCondensed);
-        
-        WeatherTask weatherTask = new WeatherTask(this, iconView, cityView, weatherView, weatherDescriptionText);
+        WeatherTask weatherTask = new WeatherTask(this, iconView, null, weatherView, null);
         weatherTask.execute("http://api.openweathermap.org/data/2.5/weather?q=Malang,id&units=metric");
     }
 }
