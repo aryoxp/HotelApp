@@ -33,6 +33,15 @@
             android:name="ap.mobile.happ.RadioActivity"
             android:label="@string/title_activity_radio" >
         </activity>
+        <activity android:name="ap.mobile.happ.PlayActivity" android:label="@string/blank"></activity>
+        <!-- Don't forget InitActivity -->
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>
