@@ -79,17 +79,22 @@ public class BrowseTVFragment extends Fragment implements MediaTVIndexInterface 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-				TVIndexAdapter adapter = (TVIndexAdapter) parent.getAdapter();
-				TVMedia media = (TVMedia) adapter.getItem(position);
-				//Toast.makeText(context, media.name, Toast.LENGTH_SHORT).show();
-				
-				String stream = media.stream;
-				if(stream != null) {
-					Intent i = new Intent(Intent.ACTION_VIEW);
-					i.setData(Uri.parse(stream));
-					((Activity)context).startActivity(i);
-				} else {
-					Toast.makeText(context, "Media stream URL is not available", Toast.LENGTH_SHORT).show();
+				try {
+					TVIndexAdapter adapter = (TVIndexAdapter) parent.getAdapter();
+					TVMedia media = (TVMedia) adapter.getItem(position);
+					//Toast.makeText(context, media.name, Toast.LENGTH_SHORT).show();
+					
+					String stream = media.stream;
+					if(stream != null) {
+						Intent i = new Intent(Intent.ACTION_VIEW);
+						i.setData(Uri.parse(stream));
+						//((Fragment)context).getActivity().startActivity(i);
+						((Activity)context).startActivity(i);
+					} else {
+						Toast.makeText(context, "Media stream URL is not available", Toast.LENGTH_SHORT).show();
+					}
+				} catch(Exception ex) {
+					Toast.makeText(context, "Sorry, unable to start media. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
 				}
 			}
 			

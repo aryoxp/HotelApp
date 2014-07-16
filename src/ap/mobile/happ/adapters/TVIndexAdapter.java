@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import ap.mobile.happ.R;
 import ap.mobile.happ.base.TVMedia;
 import ap.mobile.happ.tasks.ImageLoader;
@@ -72,7 +70,7 @@ public class TVIndexAdapter extends BaseAdapter {
 			if(!logoPath.equals(null)) {
 				//Toast.makeText(this.context, logoPath, Toast.LENGTH_LONG).show();
 				ImageLoader iLoader = new ImageLoader();
-				iLoader.execute(vh.logo, "http://ubcreative.net/apps/hotel/upload/"+logoPath);
+				iLoader.execute(vh.logo, "http://ubcreative.net/apps/hotel/image/"+logoPath);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

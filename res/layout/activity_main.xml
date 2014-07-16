@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/bg"
-  android:baselineAligned="true">
-  
-  <LinearLayout
-      android:id="@+id/mainVerticalNavigationBar"
-      android:layout_width="48dp"
-      android:layout_height="match_parent"
-      android:background="#22FFFFFF"
-      >
-      <ImageView
-          android:src="@drawable/antenna2"
-          android:layout_width="48dp"
-          android:layout_height="48dp" 
-          android:padding="10dp"
-          android:contentDescription=""/>
-  </LinearLayout>
-  
-  <FrameLayout 
-      android:id="@+id/mainBrowseContainer"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
-      ></FrameLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:baselineAligned="true" >
+
+    <LinearLayout
+        android:id="@+id/mainVerticalNavigationBar"
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:background="#22FFFFFF" >
+
+        <ImageView
+            android:id="@+id/mainButtonHome"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_side_navigation"
+            android:padding="10dp"
+            android:src="@drawable/antenna2"
+            android:clickable="true"
+            android:focusable="true"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/mainBrowseContainer"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </FrameLayout>
 
 </LinearLayout>
