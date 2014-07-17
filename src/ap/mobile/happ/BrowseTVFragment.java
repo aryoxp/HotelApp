@@ -86,9 +86,14 @@ public class BrowseTVFragment extends Fragment implements MediaTVIndexInterface 
 					
 					String stream = media.stream;
 					if(stream != null) {
+						/*
 						Intent i = new Intent(Intent.ACTION_VIEW);
 						i.setData(Uri.parse(stream));
 						//((Fragment)context).getActivity().startActivity(i);
+						((Activity)context).startActivity(i);
+						*/
+						Intent i = new Intent(context, PlayActivity.class);
+						i.putExtra("url", stream);
 						((Activity)context).startActivity(i);
 					} else {
 						Toast.makeText(context, "Media stream URL is not available", Toast.LENGTH_SHORT).show();
