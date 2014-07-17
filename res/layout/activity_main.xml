@@ -6,23 +6,11 @@
     android:background="@drawable/bg"
     android:baselineAligned="true" >
 
-    <LinearLayout
-        android:id="@+id/mainVerticalNavigationBar"
-        android:layout_width="48dp"
+    <ap.mobile.happ.views.Sidebar
+        android:id="@+id/mainSidebar"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="#22FFFFFF" >
-
-        <ImageView
-            android:id="@+id/mainButtonHome"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/button_side_navigation"
-            android:padding="10dp"
-            android:src="@drawable/antenna2"
-            android:clickable="true"
-            android:focusable="true"
-            tools:ignore="ContentDescription" />
-    </LinearLayout>
+        />
 
     <FrameLayout
         android:id="@+id/mainBrowseContainer"

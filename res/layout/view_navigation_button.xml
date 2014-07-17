@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigationButtonIcon"
+    android:layout_width="96dp"
+    android:layout_height="96dp"
+    android:layout_gravity="center"
+    android:background="@drawable/button_main_navigation"
+    android:padding="10dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:src="@drawable/antenna2"
+    tools:ignore="ContentDescription" />

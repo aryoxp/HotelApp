@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ap.mobile.happ.TVActivity" >
+        <activity android:name="ap.mobile.happ.MainActivity" >
         </activity>
         <activity
             android:name="ap.mobile.happ.RadioActivity"

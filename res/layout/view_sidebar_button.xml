@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+	<ImageView
+	    	android:id="@+id/sidebarButtonIcon"
+	        android:layout_width="72dp"
+	        android:layout_height="72dp"
+	        android:background="@drawable/button_side_navigation"
+	        android:clickable="true"
+	        android:focusable="true"
+	        android:padding="10dp"
+	        android:src="@drawable/antenna2"
+	        tools:ignore="ContentDescription" />
+
+</LinearLayout>

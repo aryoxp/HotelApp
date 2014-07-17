@@ -54,71 +54,13 @@
             android:src="@drawable/m_weather_04"
             tools:ignore="ContentDescription" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearLayout1"
+    
+    <ap.mobile.happ.views.MainNavigation 
+        android:id="@+id/mainNavigation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="27dp"
-        android:orientation="vertical" >
-
-        <GridLayout
-            android:id="@+id/mainMenuIconsContainer"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/menuTv"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="left"
-                android:layout_margin="10dp"
-                android:src="@drawable/monitor"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/menuRadio"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="left"
-                android:layout_margin="10dp"
-                android:src="@drawable/antenna2"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/menuVOD"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="left"
-                android:layout_margin="10dp"
-                android:src="@drawable/film_reel"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/menuInfo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="left"
-                android:layout_margin="10dp"
-                android:src="@drawable/info"
-                tools:ignore="ContentDescription" />
-        </GridLayout>
-
-        <TextView
-            android:id="@+id/selectedMenuText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Video on Demand and Long Textual"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:ignore="UnusedAttribute,HardcodedText" />
-
-    </LinearLayout>
-
+        />
+    
 </FrameLayout>
