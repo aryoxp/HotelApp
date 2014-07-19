@@ -7,11 +7,12 @@ import io.vov.vitamio.MediaPlayer.OnErrorListener;
 import io.vov.vitamio.MediaPlayer.OnPreparedListener;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
-
 import android.app.Activity;
+import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
@@ -23,6 +24,7 @@ public class PlayActivity extends Activity implements OnCompletionListener, OnPr
 	private String url;
 	private ProgressBar load;
 	private TextView empty;	
+	private SurfaceHolder holder;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,13 @@ public class PlayActivity extends Activity implements OnCompletionListener, OnPr
 		load = (ProgressBar) this.findViewById(R.id.load);
 		empty = (TextView) this.findViewById(R.id.empty);
 		mVideoView = (VideoView) this.findViewById(R.id.surface_view);
+		
+		mVideoView = (VideoView) this.findViewById(R.id.surface_view);
+	    mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);
+
+	    holder = mVideoView.getHolder();
+	    holder.setFormat(PixelFormat.RGBX_8888);
+		
 		mVideoView.setMediaController(new MediaController(this));
 		mVideoView.setOnCompletionListener(this);
 		mVideoView.setOnPreparedListener(this);
