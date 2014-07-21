@@ -21,6 +21,10 @@ public class TVItemFragment extends Fragment {
 		this.media = media;
 	}
 	
+	public TVMedia getMedia() {
+		return this.media;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

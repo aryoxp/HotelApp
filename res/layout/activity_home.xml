@@ -2,16 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    android:paddingLeft="48dp"
-    android:paddingRight="48dp"
+    android:background="@drawable/bg_example"
     tools:context=".HomeActivity" >
 
     <LinearLayout
         android:id="@+id/headerContainer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:background="#44000000"
+        android:paddingTop="27dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="48dp"
+    	android:paddingRight="48dp"
         android:gravity="center_vertical" >
 
         <TextView
@@ -26,41 +28,55 @@
             android:typeface="sans"
             tools:ignore="UnusedAttribute,HardcodedText" />
 
-        <TextView
-            android:id="@+id/mainClockText"
+        <LinearLayout
+            android:id="@+id/mainClockWeatherContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="9:27 AM"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText" />
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/weatherText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="25°C"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/mainClockText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:text="9:27 AM"
+                android:textColor="#FFFFFF"
+                android:textSize="44sp"
+                tools:ignore="HardcodedText" />
 
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/m_weather_04"
-            tools:ignore="ContentDescription" />
+            <LinearLayout
+                android:id="@+id/mainWeatherContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/weatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25°C"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/weatherIcon"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/m_weather_04"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-    
-    <ap.mobile.happ.views.MainNavigation 
+
+    <ap.mobile.happ.views.MainNavigation
         android:id="@+id/mainNavigation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
-        android:layout_marginBottom="27dp"
-        />
-    
+        android:layout_marginBottom="27dp" />
+
 </FrameLayout>

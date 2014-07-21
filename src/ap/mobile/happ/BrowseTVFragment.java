@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +13,21 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 import ap.mobile.happ.adapters.TVIndexAdapter;
+import ap.mobile.happ.base.STBPageFragment;
 import ap.mobile.happ.base.TVMedia;
 import ap.mobile.happ.interfaces.MediaTVIndexInterface;
 import ap.mobile.happ.tasks.TVIndexTask;
 
-public class BrowseTVFragment extends Fragment implements MediaTVIndexInterface {
+public class BrowseTVFragment extends STBPageFragment implements MediaTVIndexInterface {
 	
 	private Context context;
 	private ArrayList<TVMedia> tvMedias = new ArrayList<TVMedia>();
-	private int perpage = 10;
-	private int page = 0;
+	//private int perpage = 10;
+	//private int page = 0;
 	
 	private View v;
 	private GridView gv;
+	private String pageTitle = "TV";
 	
 	public static BrowseTVFragment getInstance(Context context) {
 		BrowseTVFragment fragment = new BrowseTVFragment();
@@ -49,6 +49,12 @@ public class BrowseTVFragment extends Fragment implements MediaTVIndexInterface 
 	
 	@Override
 	public void onResume() {
+		try {
+			this.getMainActivityInterface().setPageTitle(this.pageTitle );
+		} catch(Exception ex) {
+			
+		}
+		
 		TVIndexTask indexTask = new TVIndexTask(this);
         //indexTask.execute("http://175.45.187.246/iptv/index.php/service/index/tv");
 		indexTask.execute("http://ubcreative.net/apps/hotel/json/tv/");
@@ -105,6 +111,10 @@ public class BrowseTVFragment extends Fragment implements MediaTVIndexInterface 
 			
 		});
 		
+	}
+	
+	public ArrayList<TVMedia> getMedias() {
+		return this.tvMedias;
 	}
 
 }

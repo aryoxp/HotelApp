@@ -36,14 +36,10 @@ public class MainNavigation extends LinearLayout implements NavigationButtonInte
 		
 	public void addButton(String id, String label, int iconResourceId) {
 		MainNavigationButton button = new MainNavigationButton(getContext(), this.attrs, id, label, iconResourceId);
-		init(button);
+		this.addButton(button);
 	}
 
 	public void addButton(MainNavigationButton button) {
-		init(button);
-	}
-	
-	private void init(MainNavigationButton button) {
 		this.buttons.add(button);
 		button.setFocusChangeListener(this);
 		this.mainNavigationButtonContainer.addView(button);

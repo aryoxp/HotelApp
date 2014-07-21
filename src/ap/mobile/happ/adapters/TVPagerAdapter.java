@@ -3,11 +3,9 @@ package ap.mobile.happ.adapters;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import ap.mobile.happ.BrowseTVFragment;
 import ap.mobile.happ.TVItemFragment;
 import ap.mobile.happ.base.TVMedia;
 
@@ -20,7 +18,7 @@ public class TVPagerAdapter extends FragmentPagerAdapter {
 	public TVPagerAdapter(FragmentManager fm, ArrayList<TVMedia> TVMedias, Context context) {
 		super(fm);
 		this.tvMedias = TVMedias;
-		this.context = context;
+		this.setContext(context);
 	}
 	
 	public void setPerpage(int perpage) {
@@ -42,6 +40,14 @@ public class TVPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public CharSequence getPageTitle(int position) {
 		return "Page " + (position+1);
+	}
+
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
 	}
 
 }

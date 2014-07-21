@@ -47,16 +47,14 @@ public class TVIndexAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-		//Typeface fontNormal = Typeface.createFromAsset(((Activity)this.context).getAssets(), "fonts/Helvetica-Medium-Condensed.ttf"); 
 		TVItemViewHolder vh = null;
 		LayoutInflater inflater = (LayoutInflater)
 	            context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		
 		if(convertView == null) {			
-			convertView = inflater.inflate(R.layout.item_tv, null);			
+			convertView = inflater.inflate(R.layout.item_tv, parent, false);			
 			vh = new TVItemViewHolder();
 			vh.label = (TextView) convertView.findViewById(R.id.label);
-			//vh.label.setTypeface(fontNormal);
 			vh.logo = (ImageView) convertView.findViewById(R.id.logo);
 			convertView.setTag(vh);			
 		} else {
@@ -68,7 +66,6 @@ public class TVIndexAdapter extends BaseAdapter {
 		try {
 			String logoPath = media.logo;
 			if(!logoPath.equals(null)) {
-				//Toast.makeText(this.context, logoPath, Toast.LENGTH_LONG).show();
 				ImageLoader iLoader = new ImageLoader();
 				iLoader.execute(vh.logo, "http://ubcreative.net/apps/hotel/image/"+logoPath);
 			}

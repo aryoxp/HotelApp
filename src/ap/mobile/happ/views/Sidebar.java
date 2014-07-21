@@ -6,14 +6,17 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import ap.mobile.happ.R;
+import ap.mobile.happ.interfaces.NavigationButtonInterface;
 
 
-public class Sidebar extends LinearLayout {
+public class Sidebar extends LinearLayout implements NavigationButtonInterface {
 
 	private LinearLayout mainVerticalNavigationBar;
 	private ArrayList<SidebarButton> buttons = new ArrayList<SidebarButton>();
 	private AttributeSet attrs;
+	private TextView sidebarNavigationLabel;
 	
 	public Sidebar(Context context) {
 		this(context, null);
@@ -25,18 +28,24 @@ public class Sidebar extends LinearLayout {
 		    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.view_sidebar, this, true);
 		this.mainVerticalNavigationBar = (LinearLayout) this.findViewById(R.id.mainVerticalNavigationBar);
+		this.sidebarNavigationLabel = (TextView) this.findViewById(R.id.sidebarNavigationLabel);
 		this.attrs = attrs;
 	}
 		
-	public void addButton(String id, int iconResourceId) {
-		SidebarButton button = new SidebarButton(getContext(), this.attrs, id, iconResourceId);
-		this.buttons.add(button);
-		this.mainVerticalNavigationBar.addView(button);
+	public void addButton(String id, String label, int iconResourceId) {
+		SidebarButton button = new SidebarButton(getContext(), this.attrs, id, label, iconResourceId);
+		this.addButton(button);
 	}
 	
 	public void addButton(SidebarButton button) {
+		button.setFocusChangeListener(this);
 		this.buttons.add(button);
 		this.mainVerticalNavigationBar.addView(button);
+	}
+
+	@Override
+	public void setLabel(String label) {
+		this.sidebarNavigationLabel.setText(label);
 	}
 	
 }

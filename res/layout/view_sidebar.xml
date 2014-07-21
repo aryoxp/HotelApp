@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainVerticalNavigationBar"
+    android:id="@+id/sidebarContainer"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#22FFFFFF" >
-    
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/sidebarNavigationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="50dp"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="32sp"
+        android:text="Home"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:id="@+id/mainVerticalNavigationBar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#22FFFFFF"
+        android:orientation="vertical" >
+    </LinearLayout>
+
 </LinearLayout>

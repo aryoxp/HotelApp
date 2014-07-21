@@ -6,7 +6,7 @@
     android:layout_marginBottom="27dp"
     android:layout_gravity="center|bottom"
     android:orientation="vertical"
-    android:background="#22FFFFFF" >
+    android:background="#44000000" >
 
     <GridLayout
     	android:id="@+id/mainNavigationButtonContainer"
