@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
 import ap.mobile.happ.base.STBPage;
 import ap.mobile.happ.base.STBPageFragment;
 import ap.mobile.happ.interfaces.MainActivityInterface;
@@ -14,6 +13,7 @@ import ap.mobile.happ.views.SidebarButton;
 
 public class MainActivity extends FragmentActivity implements OnClickListener, MainActivityInterface {
 	
+	private SidebarButton buttonHome;
 	private SidebarButton buttonTV;
 	private SidebarButton buttonRadio;
 	private SidebarButton buttonVod;
@@ -24,6 +24,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 	
 	private Sidebar sidebar;
 	private TextView pageTitleText;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 		
 		this.sidebar = (Sidebar) this.findViewById(R.id.mainSidebar);
 		
+		this.buttonHome = new SidebarButton(this, "mainButtonHome", "Home", R.drawable.bt_main_nav_home);
 		this.buttonTV = new SidebarButton(this, "mainButtonTV", "TV", R.drawable.bt_main_nav_tv);
         this.buttonRadio = new SidebarButton(this, "mainButtonRadio", "Radio", R.drawable.bt_main_nav_radio);
         this.buttonVod = new SidebarButton(this, "mainButtonVod", "Video on Demand", R.drawable.bt_main_nav_video);
@@ -42,7 +44,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         this.buttonLanguage = new SidebarButton(this, "mainButtonLanguage", "Language", R.drawable.bt_main_nav_language);
         
         this.buttonTV.setOnClickListener(this);
+        this.buttonHome.setOnClickListener(this);
         
+        this.sidebar.addButton(this.buttonHome);
         this.sidebar.addButton(this.buttonTV);
         this.sidebar.addButton(this.buttonRadio);
         this.sidebar.addButton(this.buttonVod);
@@ -57,7 +61,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 
 	@Override
 	public void onClick(View v) {
-		Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_LONG).show();
+		
+		String tag = (String) v.getTag();
+		
+		if(tag != null && tag.equals("mainButtonHome"))
+			this.finish();
+		
+		//Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
