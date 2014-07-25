@@ -32,8 +32,8 @@ public class TVParser {
 			}
 			
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		return list;
 	}

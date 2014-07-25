@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+
     <GridView
         android:id="@+id/indexTvGrid"
         android:layout_width="1148dp"
@@ -10,12 +11,41 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:verticalSpacing="4dp"
         android:columnWidth="160dp"
         android:horizontalSpacing="4dp"
-        android:stretchMode="columnWidth"       
-        android:numColumns="7" >
-
+        android:numColumns="7"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="4dp" >
     </GridView>
-    
+
+    <LinearLayout
+        android:id="@+id/indexTvStatusContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:background="#33000000"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/indexTvStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Loading Media..."
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText,UnusedAttribute" />
+
+        <ProgressBar
+            android:id="@+id/indexTvProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:paddingTop="10dp"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+
+    </LinearLayout>
+
 </FrameLayout>

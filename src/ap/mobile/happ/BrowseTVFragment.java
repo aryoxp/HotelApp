@@ -5,14 +5,18 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask.Status;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import ap.mobile.happ.adapters.TVIndexAdapter;
+import ap.mobile.happ.base.STBPage;
 import ap.mobile.happ.base.STBPageFragment;
 import ap.mobile.happ.base.TVMedia;
 import ap.mobile.happ.interfaces.MediaTVIndexInterface;
@@ -28,6 +32,10 @@ public class BrowseTVFragment extends STBPageFragment implements MediaTVIndexInt
 	private View v;
 	private GridView gv;
 	private String pageTitle = "TV";
+	private TextView statusText;
+	private View statusContainer;
+	private TVIndexTask indexTask;
+	private ProgressBar progress;
 	
 	public static BrowseTVFragment getInstance(Context context) {
 		BrowseTVFragment fragment = new BrowseTVFragment();
@@ -44,6 +52,9 @@ public class BrowseTVFragment extends STBPageFragment implements MediaTVIndexInt
 			Bundle savedInstanceState) {
 		this.v = inflater.inflate(R.layout.fragment_index_tv, container, false);
 		this.gv = (GridView) v.findViewById(R.id.indexTvGrid);
+		this.statusText = (TextView) v.findViewById(R.id.indexTvStatusText);
+		this.statusContainer = v.findViewById(R.id.indexTvStatusContainer);
+		this.progress = (ProgressBar) v.findViewById(R.id.indexTvProgress);
 		return this.v;
 	}
 	
@@ -54,30 +65,36 @@ public class BrowseTVFragment extends STBPageFragment implements MediaTVIndexInt
 		} catch(Exception ex) {
 			
 		}
-		
-		TVIndexTask indexTask = new TVIndexTask(this);
-        //indexTask.execute("http://175.45.187.246/iptv/index.php/service/index/tv");
-		indexTask.execute("http://ubcreative.net/apps/hotel/json/tv/");
+		loadMedia();
 		super.onResume();
+	}
+
+	private void loadMedia() {
+		if(this.indexTask != null && this.indexTask.getStatus() == Status.RUNNING)
+			return;
+		
+		this.indexTask = new TVIndexTask(this);
+        //indexTask.execute("http://175.45.187.246/iptv/index.php/service/index/tv");
+		this.indexTask.execute("http://ubcreative.net/apps/hotel/json/tv/");
+		this.statusContainer.setVisibility(View.VISIBLE);
+		this.progress.setVisibility(View.VISIBLE);
+		this.statusText.setText("Loading Media...");
+	}
+	
+	public void refreshMedia() {
+		this.loadMedia();
 	}
 	
 	@Override
 	public void onMediaLoaded(ArrayList<TVMedia> medias) {
-		this.tvMedias = medias;
-		/*
-		Bundle bundle = this.getArguments();
-		this.page = bundle.getInt("page");
-		int offset = (this.page-1)*perpage;
-		int max = offset + 10;
-		if(max > this.TVMedias.size()) 
-			max = this.TVMedias.size();
-		ArrayList<TVMedia> medias = new ArrayList<TVMedia>();
-		for(int i = offset; i<max; i++) {
-			TVMedia media = this.TVMedias.get(i);
-			medias.add(media);
+		if(medias == null) 
+		{
+			this.statusText.setText("Error: Unable to load media.");
+			this.progress.setVisibility(View.INVISIBLE);
+			return;
 		}
-		*/
-		
+		this.statusContainer.setVisibility(View.INVISIBLE);
+		this.tvMedias = medias;
 		TVIndexAdapter adapter = new TVIndexAdapter(this.context, medias);
 		gv.setAdapter(adapter);
 		gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,6 +132,16 @@ public class BrowseTVFragment extends STBPageFragment implements MediaTVIndexInt
 	
 	public ArrayList<TVMedia> getMedias() {
 		return this.tvMedias;
+	}
+	
+	@Override
+	public String getPageTitle() {
+		return this.pageTitle;
+	}
+
+	@Override
+	public STBPage getPageId() {
+		return STBPage.TV;
 	}
 
 }
