@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 import ap.mobile.happ.base.STBPage;
 import ap.mobile.happ.base.STBPageFragment;
 import ap.mobile.happ.interfaces.MainActivityInterface;
@@ -58,16 +59,36 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         this.changePage(STBPage.TV);
         
 	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		STBPageFragment fragment = (STBPageFragment) this.getSupportFragmentManager()
+				.findFragmentById(R.id.mainBrowseContainer);
+		switch(fragment.getPageId()) {
+		case TV:
+			this.buttonTV.requestFocus();
+		default:
+			break;	
+		}
+	}
 
 	@Override
 	public void onClick(View v) {
 		
 		String tag = (String) v.getTag();
 		
-		if(tag != null && tag.equals("mainButtonHome"))
+		if(tag != null && tag.equals("mainButtonHome")) {
 			this.finish();
+			return;
+		} 
+		if(tag != null && tag.equals("mainButtonTV"))
+		{
+			this.changePage(STBPage.TV);
+			return;
+		}
 		
-		//Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), "Not implemented.", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
