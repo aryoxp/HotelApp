@@ -63,9 +63,7 @@ public class HomeActivity extends Activity implements OnClickListener {
         this.buttonInfo = new MainNavigationButton(this, "mainButtonInfo", "Information", R.drawable.bt_main_nav_info);
         this.buttonSetting = new MainNavigationButton(this, "mainButtonSetting", "Setting", R.drawable.bt_main_nav_setting);
         this.buttonLanguage = new MainNavigationButton(this, "mainButtonLanguage", "Language", R.drawable.bt_main_nav_language);
-        
-        this.buttonTV.setOnClickListener(this);
-        
+                
         this.mainNavigation.addButton(this.buttonTV);
         this.mainNavigation.addButton(this.buttonRadio);
         this.mainNavigation.addButton(this.buttonVod);
@@ -74,6 +72,7 @@ public class HomeActivity extends Activity implements OnClickListener {
         this.mainNavigation.addButton(this.buttonSetting);
         this.mainNavigation.addButton(this.buttonLanguage);
         
+        this.mainNavigation.setButtonsClickListener(this);
         
         /*
         Typeface helveticaCondensed = Typeface.createFromAsset(getAssets(), "fonts/Helvetica-Condensed.ttf");
@@ -107,11 +106,11 @@ public class HomeActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		//Toast.makeText(this, "Button clicked!", Toast.LENGTH_SHORT).show();
 		String tag = (String) v.getTag();
-		if(tag != null) { 
-			if(tag.equals(this.buttonTV.getButtonId())) {
-				Intent intent = new Intent(this, MainActivity.class);
-				this.startActivity(intent);
-			}
+		if(tag != null) {
+			Intent intent = new Intent(this, MainActivity.class);
+			intent.putExtra("menu", tag);
+			this.startActivity(intent);
+			return;
 		} else {
 			Toast.makeText(this, "Error: Button tag is NULL", Toast.LENGTH_SHORT).show();
 		}

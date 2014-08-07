@@ -49,7 +49,7 @@ public class RadioFragment extends Fragment {
 			medias.add(media);
 		}
 		View v = inflater.inflate(R.layout.fragment_index_radio, container, false);
-		GridView gv = (GridView) v.findViewById(R.id.IndexGrid);
+		GridView gv = (GridView) v.findViewById(R.id.indexRadioGrid);
 		
 		TVIndexAdapter adapter = new TVIndexAdapter(this.context, medias);
 		gv.setAdapter(adapter);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import ap.mobile.happ.R;
@@ -17,6 +18,7 @@ public class Sidebar extends LinearLayout implements NavigationButtonInterface {
 	private ArrayList<SidebarButton> buttons = new ArrayList<SidebarButton>();
 	private AttributeSet attrs;
 	private TextView sidebarNavigationLabel;
+	private OnClickListener buttonsClickListener;
 	
 	public Sidebar(Context context) {
 		this(context, null);
@@ -46,6 +48,13 @@ public class Sidebar extends LinearLayout implements NavigationButtonInterface {
 	@Override
 	public void setLabel(String label) {
 		this.sidebarNavigationLabel.setText(label);
+	}
+	
+	public void setButtonsClickListener(View.OnClickListener buttonsClickListener) {
+		this.buttonsClickListener = buttonsClickListener;
+		for(SidebarButton button : this.buttons) {
+			button.setOnClickListener(this.buttonsClickListener);
+		}
 	}
 	
 }

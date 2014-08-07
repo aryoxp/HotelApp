@@ -1,5 +1,6 @@
 package ap.mobile.happ;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -43,10 +44,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         this.buttonInfo = new SidebarButton(this, "mainButtonInfo", "Information", R.drawable.bt_main_nav_info);
         this.buttonSetting = new SidebarButton(this, "mainButtonSetting", "Setting", R.drawable.bt_main_nav_setting);
         this.buttonLanguage = new SidebarButton(this, "mainButtonLanguage", "Language", R.drawable.bt_main_nav_language);
-        
-        this.buttonTV.setOnClickListener(this);
-        this.buttonHome.setOnClickListener(this);
-        
+                
         this.sidebar.addButton(this.buttonHome);
         this.sidebar.addButton(this.buttonTV);
         this.sidebar.addButton(this.buttonRadio);
@@ -56,8 +54,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         this.sidebar.addButton(this.buttonSetting);
         this.sidebar.addButton(this.buttonLanguage);
         
-        this.changePage(STBPage.TV);
+        this.sidebar.setButtonsClickListener(this);
         
+        Intent intent = this.getIntent();
+        String menu = intent.getStringExtra("menu");
+        if(menu != null) {
+        	if(menu.equals(this.buttonRadio.getButtonId())) {
+        		this.changePage(STBPage.Radio);
+        		return;
+        	}
+        }
+        this.changePage(STBPage.TV);
 	}
 	
 	@Override
@@ -78,14 +85,20 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 		
 		String tag = (String) v.getTag();
 		
-		if(tag != null && tag.equals("mainButtonHome")) {
-			this.finish();
-			return;
-		} 
-		if(tag != null && tag.equals("mainButtonTV"))
-		{
-			this.changePage(STBPage.TV);
-			return;
+		if(tag != null) {
+			
+			if(tag.equals("mainButtonHome")) {
+				this.finish();
+				return;
+			}
+			if(tag.equals("mainButtonTV")) {
+				this.changePage(STBPage.TV);
+				return;
+			}
+			if(tag.equals("mainButtonRadio")) {
+				this.changePage(STBPage.Radio);
+				return;
+			}
 		}
 		
 		Toast.makeText(getApplicationContext(), "Not implemented.", Toast.LENGTH_LONG).show();
@@ -100,10 +113,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 	public void changePage(STBPage page) {
 		STBPageFragment fragment;
 		switch(page) {
+			case Radio:
+				fragment = BrowseRadioFragment.getInstance(this);
+				break;
 			case TV:
 			default:
 				fragment = BrowseTVFragment.getInstance(this);
 				break;
+			
 		}
 		fragment.setMainActivityInterface(this);
 		getSupportFragmentManager().beginTransaction().replace(R.id.mainBrowseContainer, fragment)

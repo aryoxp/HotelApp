@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class MainNavigation extends LinearLayout implements NavigationButtonInte
 	private ArrayList<MainNavigationButton> buttons = new ArrayList<MainNavigationButton>();
 	private AttributeSet attrs;
 	private TextView selectedMenuText;
+	private OnClickListener buttonsClickListener;
 	
 	
 	public MainNavigation(Context context) {
@@ -52,6 +54,13 @@ public class MainNavigation extends LinearLayout implements NavigationButtonInte
 	@Override
 	public void setLabel(String label) {
 		this.selectedMenuText.setText(label);
+	}
+	
+	public void setButtonsClickListener(View.OnClickListener buttonsClickListener) {
+		this.buttonsClickListener = buttonsClickListener;
+		for(MainNavigationButton button : this.buttons) {
+			button.setOnClickListener(this.buttonsClickListener);
+		}
 	}
 	
 	
