@@ -52,7 +52,7 @@ public class RadioIndexAdapter extends BaseAdapter {
 	            context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		
 		if(convertView == null) {			
-			convertView = inflater.inflate(R.layout.item_tv, parent, false);			
+			convertView = inflater.inflate(R.layout.item_radio, parent, false);			
 			vh = new TVItemViewHolder();
 			vh.label = (TextView) convertView.findViewById(R.id.label);
 			vh.logo = (ImageView) convertView.findViewById(R.id.logo);

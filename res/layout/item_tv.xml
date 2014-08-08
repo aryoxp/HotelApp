@@ -20,15 +20,17 @@
         android:id="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:fontFamily="sans-serif-condensed"
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="10dp"
+        android:singleLine="true"
         android:text="TV Station"
         android:textColor="#FFF"
         android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,UnusedAttribute" />
 
     <TextView
         android:id="@+id/itemDescription"

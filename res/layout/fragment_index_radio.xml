@@ -3,7 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+	<!-- 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TableRow
+            android:id="@+id/indexRadioGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp" 
+            android:layout_marginBottom="20dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginTop="20dp"
+        	>
+    	</TableRow>
+    </TableLayout>
+    -->
+     
     <GridView
         android:id="@+id/indexRadioGrid"
         android:layout_width="1148dp"
@@ -17,15 +34,16 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="4dp" >
     </GridView>
-
+    
     <LinearLayout
         android:id="@+id/indexRadioStatusContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="10dp"
         android:background="#33000000"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:ignore="UselessParent" >
 
         <TextView
             android:id="@+id/indexRadioStatusText"

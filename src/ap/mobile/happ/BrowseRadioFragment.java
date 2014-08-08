@@ -26,8 +26,6 @@ public class BrowseRadioFragment extends STBPageFragment implements MediaRadioIn
 	
 	private Context context;
 	private ArrayList<RadioMedia> RadioMedias = new ArrayList<RadioMedia>();
-	//private int perpage = 10;
-	//private int page = 0;
 	
 	private View v;
 	private GridView gv;
