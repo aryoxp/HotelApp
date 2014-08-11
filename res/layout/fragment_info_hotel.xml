@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!--
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TableRow
+            android:id="@+id/indexRadioGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp" 
+            android:layout_marginBottom="20dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginTop="20dp"
+        	>
+    	</TableRow>
+    </TableLayout>
+    -->
+
+    <LinearLayout
+        android:id="@+id/infoHotelMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ListView
+            android:layout_weight="1"
+            android:id="@+id/infoHotelListView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" >
+        </ListView>
+        <View
+            android:layout_weight="3"
+            android:id="@+id/infoHotelContentContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            >
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infoHotelStatusContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#33000000"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:ignore="UselessParent" >
+
+        <TextView
+            android:id="@+id/infoHotelStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Loading Media..."
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,UnusedAttribute" />
+
+        <ProgressBar
+            android:id="@+id/infoHotelProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:paddingTop="10dp" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,75 +1,95 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_example"
     tools:context=".HomeActivity" >
 
     <LinearLayout
-        android:id="@+id/headerContainer"
+        android:id="@+id/homeContainer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#44000000"
-        android:paddingTop="27dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="48dp"
-    	android:paddingRight="48dp"
-        android:gravity="center_vertical" >
-
-        <TextView
-            android:id="@+id/welcomeText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif"
-            android:text="Welcome to Hotel Name"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:typeface="sans"
-            tools:ignore="UnusedAttribute,HardcodedText" />
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/mainClockWeatherContainer"
-            android:layout_width="wrap_content"
+            android:id="@+id/headerContainer"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|right"
-            android:orientation="horizontal" >
+            android:background="#44000000"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp"
+            android:paddingTop="27dp" >
 
             <TextView
-                android:id="@+id/mainClockText"
-                android:layout_width="wrap_content"
+                android:id="@+id/hotelNameText"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:text="9:27 AM"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="Welcome to Hotel Name"
                 android:textColor="#FFFFFF"
-                android:textSize="44sp"
-                tools:ignore="HardcodedText" />
+                android:textSize="28sp"
+                android:typeface="sans"
+                tools:ignore="UnusedAttribute,HardcodedText" />
 
             <LinearLayout
-                android:id="@+id/mainWeatherContainer"
+                android:id="@+id/mainClockWeatherContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/weatherText"
+                    android:id="@+id/mainClockText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25°C"
+                    android:layout_marginRight="30dp"
+                    android:text="9:27 AM"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="44sp"
                     tools:ignore="HardcodedText" />
 
-                <ImageView
-                    android:id="@+id/weatherIcon"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_marginLeft="10dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/m_weather_04"
-                    tools:ignore="ContentDescription" />
+                <LinearLayout
+                    android:id="@+id/mainWeatherContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/weatherText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25°C"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        tools:ignore="HardcodedText" />
+
+                    <ImageView
+                        android:id="@+id/weatherIcon"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/m_weather_04"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/homeWelcomeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome..."
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <ap.mobile.happ.views.MainNavigation
@@ -78,5 +98,43 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="27dp" />
+
+    <FrameLayout
+        android:id="@+id/mainScreenCover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black" >
+
+        <LinearLayout
+            android:id="@+id/mainStatusContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#33000000"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp"
+            tools:ignore="UselessParent" >
+
+            <TextView
+                android:id="@+id/mainStatusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Loading, Please Wait..."
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+            <ProgressBar
+                android:id="@+id/mainProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+    </FrameLayout>
 
 </FrameLayout>

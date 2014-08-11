@@ -41,7 +41,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         this.buttonRadio = new SidebarButton(this, "mainButtonRadio", "Radio", R.drawable.bt_main_nav_radio);
         this.buttonVod = new SidebarButton(this, "mainButtonVod", "Video on Demand", R.drawable.bt_main_nav_video);
         this.buttonInternet = new SidebarButton(this, "mainButtonInternet", "Internet", R.drawable.bt_main_nav_internet);
-        this.buttonInfo = new SidebarButton(this, "mainButtonInfo", "Information", R.drawable.bt_main_nav_info);
+        this.buttonInfo = new SidebarButton(this, "mainButtonInfo", "Hotel Information", R.drawable.bt_main_nav_info);
         this.buttonSetting = new SidebarButton(this, "mainButtonSetting", "Setting", R.drawable.bt_main_nav_setting);
         this.buttonLanguage = new SidebarButton(this, "mainButtonLanguage", "Language", R.drawable.bt_main_nav_language);
                 
@@ -63,7 +63,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         		this.changePage(STBPage.Radio);
         		return;
         	}
+        	if(menu.equals(this.buttonInfo.getButtonId())) {
+        		this.changePage(STBPage.Info);
+        		return;
+        	}
         }
+        
+        // default is TV
         this.changePage(STBPage.TV);
 	}
 	
@@ -111,6 +117,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 				this.changePage(STBPage.Radio);
 				return;
 			}
+			if(tag.equals("mainButtonInfo")) {
+				this.changePage(STBPage.Info);
+				return;
+			}
+			
 		}
 		
 		Toast.makeText(getApplicationContext(), "Not implemented.", Toast.LENGTH_LONG).show();
@@ -125,14 +136,16 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 	public void changePage(STBPage page) {
 		STBPageFragment fragment;
 		switch(page) {
-			case Radio:
-				fragment = BrowseRadioFragment.getInstance(this);
-				break;
-			case TV:
-			default:
-				fragment = BrowseTVFragment.getInstance(this);
-				break;
-			
+		case Info:
+			fragment = HotelInfoFragment.getInstance(this);
+			break;
+		case Radio:
+			fragment = BrowseRadioFragment.getInstance(this);
+			break;
+		case TV:
+		default:
+			fragment = BrowseTVFragment.getInstance(this);
+			break;
 		}
 		fragment.setMainActivityInterface(this);
 		getSupportFragmentManager().beginTransaction().replace(R.id.mainBrowseContainer, fragment)

@@ -28,11 +28,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-condensed"
         android:paddingTop="27dp"
         android:paddingRight="48dp"
         android:text="Page Title"
         android:textSize="44sp"
+        android:textColor="@color/white"
         tools:ignore="HardcodedText" />
 
 </FrameLayout>

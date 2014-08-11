@@ -17,6 +17,7 @@
         android:fontFamily="sans-serif-condensed"
         android:textSize="32sp"
         android:text="Home"
+        android:textColor="@color/white"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
