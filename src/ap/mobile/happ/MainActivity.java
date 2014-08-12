@@ -93,6 +93,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 		case Radio:
 			this.buttonRadio.requestFocus();
 			break;
+		case Info:
+			this.buttonInfo.requestFocus();
+			break;
 		default:
 			break;	
 		}

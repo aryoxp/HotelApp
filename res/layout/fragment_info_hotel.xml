@@ -25,7 +25,8 @@
     <LinearLayout
         android:id="@+id/infoHotelMainContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent" 
+        android:baselineAligned="false">
 
         <ListView
             android:layout_weight="1"
@@ -33,13 +34,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content" >
         </ListView>
-        <View
+        <LinearLayout
             android:layout_weight="3"
             android:id="@+id/infoHotelContentContainer"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             >
-        </View>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
