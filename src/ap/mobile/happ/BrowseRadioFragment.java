@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import ap.mobile.happ.adapters.RadioIndexAdapter;
+import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.STBPage;
 import ap.mobile.happ.base.STBPageFragment;
 import ap.mobile.happ.base.RadioMedia;
@@ -73,7 +74,7 @@ public class BrowseRadioFragment extends STBPageFragment implements MediaRadioIn
 		
 		this.indexTask = new RadioIndexTask(this);
         //indexTask.execute("http://175.45.187.246/ipRadio/index.php/service/index/Radio");
-		this.indexTask.execute("http://ubcreative.net/apps/hotel/json/radio/");
+		this.indexTask.execute(AppConfig.baseUrl + "json/radio/");
 		this.statusContainer.setVisibility(View.VISIBLE);
 		this.progress.setVisibility(View.VISIBLE);
 		this.statusText.setText("Loading Media...");

@@ -12,15 +12,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.HotelInfo;
 import ap.mobile.happ.base.STBPage;
 import ap.mobile.happ.base.STBPageFragment;
 import ap.mobile.happ.interfaces.HotelInfoInterface;
 import ap.mobile.happ.tasks.HotelInfoTask;
+import ap.mobile.happ.tasks.ImageLoader;
 
 public class HotelInfoFragment extends STBPageFragment implements HotelInfoInterface, OnItemClickListener {
 	
@@ -75,7 +78,7 @@ public class HotelInfoFragment extends STBPageFragment implements HotelInfoInter
 	private void loadMedia() {
 		
 		HotelInfoTask hotelInfoTask = new HotelInfoTask(this.getActivity(), this);
-		hotelInfoTask.execute("http://ubcreative.net/apps/hotel/json/info");
+		hotelInfoTask.execute(AppConfig.baseUrl + "json/info");
 		
 		this.statusContainer.setVisibility(View.VISIBLE);
 		this.progress.setVisibility(View.VISIBLE);
@@ -133,7 +136,7 @@ public class HotelInfoFragment extends STBPageFragment implements HotelInfoInter
 			
 			View hotelInfoView = inflater.inflate(R.layout.item_hotel_info, this.infoHotelContentContainer, false);
 			
-			
+			ImageView hotelInfoImageView = (ImageView) hotelInfoView.findViewById(R.id.hotelInfoImageView);
 			
 			TextView hotelInfoTitleTextView = (TextView) hotelInfoView.findViewById(R.id.hotelInfoTitle);
 			TextView hotelInfoDescriptionTextView = (TextView) hotelInfoView.findViewById(R.id.hotelInfoDescription);
@@ -142,6 +145,9 @@ public class HotelInfoFragment extends STBPageFragment implements HotelInfoInter
 			hotelInfoDescriptionTextView.setText(Html.fromHtml(hotelInfo.description));
 			this.infoHotelContentContainer.removeAllViews();
 			this.infoHotelContentContainer.addView(hotelInfoView, 0);
+			
+			ImageLoader imageLoader = new ImageLoader();
+			imageLoader.execute(hotelInfoImageView, AppConfig.baseUrl + "image/" + hotelInfo.imageUrl);
 			
 		}
 	}

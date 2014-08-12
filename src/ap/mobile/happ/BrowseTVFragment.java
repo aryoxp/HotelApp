@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import ap.mobile.happ.adapters.TVIndexAdapter;
+import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.STBPage;
 import ap.mobile.happ.base.STBPageFragment;
 import ap.mobile.happ.base.TVMedia;
@@ -75,7 +76,7 @@ public class BrowseTVFragment extends STBPageFragment implements MediaTVIndexInt
 		
 		this.indexTask = new TVIndexTask(this);
         //indexTask.execute("http://175.45.187.246/iptv/index.php/service/index/tv");
-		this.indexTask.execute("http://ubcreative.net/apps/hotel/json/tv/");
+		this.indexTask.execute(AppConfig.baseUrl + "json/tv/");
 		this.statusContainer.setVisibility(View.VISIBLE);
 		this.progress.setVisibility(View.VISIBLE);
 		this.statusText.setText("Loading Media...");

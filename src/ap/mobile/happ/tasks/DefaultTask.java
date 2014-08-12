@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.DefaultContent;
 import ap.mobile.happ.interfaces.DefaultContentInterface;
 import ap.mobile.happ.jsonparser.DefaultContentParser;
@@ -36,7 +37,7 @@ public class DefaultTask extends AsyncTask<String, Void, String> {
 			this.progressText = "Processing Content...";
 			this.publishProgress();
 			DefaultContent content = DefaultContentParser.Parse(result);
-			URL bitmapUrl = new URL("http://ubcreative.net/apps/hotel/image/"+content.backgroundUrl);
+			URL bitmapUrl = new URL(AppConfig.baseUrl + "image/"+content.backgroundUrl);
 			this.background = BitmapFactory.decodeStream(bitmapUrl.openConnection().getInputStream());
 			this.cityName = content.cityName;
 			this.welcomeText = content.welcomeText;

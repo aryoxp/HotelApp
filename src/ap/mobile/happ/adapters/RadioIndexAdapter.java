@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import ap.mobile.happ.R;
+import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.RadioMedia;
 import ap.mobile.happ.tasks.ImageLoader;
 
@@ -67,7 +68,7 @@ public class RadioIndexAdapter extends BaseAdapter {
 			String logoPath = media.logo;
 			if(!logoPath.equals(null)) {
 				ImageLoader iLoader = new ImageLoader();
-				iLoader.execute(vh.logo, "http://ubcreative.net/apps/hotel/image/"+logoPath);
+				iLoader.execute(vh.logo, AppConfig.baseUrl + "image/"+logoPath);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

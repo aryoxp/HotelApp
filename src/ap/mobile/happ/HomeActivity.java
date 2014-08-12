@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.interfaces.DefaultContentInterface;
 import ap.mobile.happ.tasks.DefaultTask;
 import ap.mobile.happ.tasks.WeatherTask;
@@ -101,7 +102,7 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
         */
         
         DefaultTask defaultTask = new DefaultTask(this, this);
-        defaultTask.execute("http://ubcreative.net/apps/hotel/json/default");
+        defaultTask.execute(AppConfig.baseUrl + "json/default");
         
         
         
@@ -116,7 +117,8 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 		
 		ImageView iconView = (ImageView) this.findViewById(R.id.weatherIcon);
         TextView weatherView = (TextView) this.findViewById(R.id.weatherText);
-        WeatherTask weatherTask = new WeatherTask(this, iconView, null, weatherView, null);
+        TextView cityTextView = (TextView) this.findViewById(R.id.weatherCityText);
+        WeatherTask weatherTask = new WeatherTask(this, iconView, cityTextView, weatherView, null);
         weatherTask.execute("http://api.openweathermap.org/data/2.5/weather?q="+this.cityName+",id&units=metric");
 	}
     
