@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import ap.mobile.happ.adapters.HotelInfoAdapter;
 import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.HotelInfo;
 import ap.mobile.happ.base.STBPage;
@@ -111,6 +111,10 @@ public class HotelInfoFragment extends STBPageFragment implements HotelInfoInter
 	public void onHotelInfoLoaded(ArrayList<HotelInfo> hotelInfoList) {
 		this.hotelInfoList = hotelInfoList;
 		this.statusContainer.setVisibility(View.GONE);
+		
+		HotelInfoAdapter adapter = new HotelInfoAdapter(getActivity(), hotelInfoList);
+
+		/*
 		String[] infoList = new String[hotelInfoList.size()];
 		int i = 0;
 		for(HotelInfo info: hotelInfoList) {
@@ -120,7 +124,9 @@ public class HotelInfoFragment extends STBPageFragment implements HotelInfoInter
 		
 		ArrayAdapter<String> infoListAdapter = new ArrayAdapter<String>(getActivity(), 
 				android.R.layout.simple_list_item_1, infoList);
-		this.infoHotelListView.setAdapter(infoListAdapter);
+		*/
+		
+		this.infoHotelListView.setAdapter(adapter);
 	}
 
 	@Override
@@ -131,10 +137,12 @@ public class HotelInfoFragment extends STBPageFragment implements HotelInfoInter
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		if(this.hotelInfoList != null && this.hotelInfoList.size() > 0) {
+			view.setSelected(true);
 			HotelInfo hotelInfo = this.hotelInfoList.get(position);
 			LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Service.LAYOUT_INFLATER_SERVICE);
 			
-			View hotelInfoView = inflater.inflate(R.layout.item_hotel_info, this.infoHotelContentContainer, false);
+			View hotelInfoView = inflater.inflate(R.layout.view_hotel_info, this.infoHotelContentContainer, false);
+			
 			
 			ImageView hotelInfoImageView = (ImageView) hotelInfoView.findViewById(R.id.hotelInfoImageView);
 			
