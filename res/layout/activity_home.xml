@@ -6,6 +6,22 @@
     android:background="@drawable/bg_example"
     tools:context=".HomeActivity" >
 
+    <TextView
+        android:id="@+id/homeWelcomeText"
+        android:layout_width="500dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="120dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:background="#33000000"
+        android:text="Welcome..."
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:ignore="HardcodedText" />
+
     <LinearLayout
         android:id="@+id/homeContainer"
         android:layout_width="fill_parent"
@@ -19,7 +35,7 @@
             android:background="#44000000"
             android:gravity="center_vertical"
             android:paddingBottom="10dp"
-            android:paddingLeft="48dp"
+            android:paddingLeft="142dp"
             android:paddingRight="48dp"
             android:paddingTop="27dp" >
 
@@ -88,18 +104,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/homeWelcomeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome..."
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <ap.mobile.happ.views.MainNavigation

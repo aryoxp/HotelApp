@@ -176,7 +176,7 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 			String cityName, String language) {
 		this.statusText.setText("Complete!");
 		this.rootLayout.setBackground(new BitmapDrawable(getResources(),background));
-		this.hotelNameText.setText("Welcome to " + hotelName);
+		this.hotelNameText.setText(hotelName);
 		this.cityName = cityName;
 		this.welcomeText.setText(Html.fromHtml(welcomeText));
 		
