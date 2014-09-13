@@ -38,7 +38,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 		
 		this.buttonHome = new SidebarButton(this, "mainButtonHome", "Home", R.drawable.bt_main_nav_home);
 		this.buttonTV = new SidebarButton(this, "mainButtonTV", "TV", R.drawable.bt_main_nav_tv);
-        this.buttonRadio = new SidebarButton(this, "mainButtonRadio", "Radio", R.drawable.bt_main_nav_radio);
+        //this.buttonRadio = new SidebarButton(this, "mainButtonRadio", "Radio", R.drawable.bt_main_nav_radio);
         this.buttonVod = new SidebarButton(this, "mainButtonVod", "Video on Demand", R.drawable.bt_main_nav_video);
         this.buttonInternet = new SidebarButton(this, "mainButtonInternet", "Internet", R.drawable.bt_main_nav_internet);
         this.buttonInfo = new SidebarButton(this, "mainButtonInfo", "Hotel Information", R.drawable.bt_main_nav_info);
@@ -47,7 +47,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
                 
         this.sidebar.addButton(this.buttonHome);
         this.sidebar.addButton(this.buttonTV);
-        this.sidebar.addButton(this.buttonRadio);
+        //this.sidebar.addButton(this.buttonRadio);
         this.sidebar.addButton(this.buttonVod);
         this.sidebar.addButton(this.buttonInternet);
         this.sidebar.addButton(this.buttonInfo);
@@ -59,10 +59,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         Intent intent = this.getIntent();
         String menu = intent.getStringExtra("menu");
         if(menu != null) {
+        	/*
         	if(menu.equals(this.buttonRadio.getButtonId())) {
         		this.changePage(STBPage.Radio);
         		return;
         	}
+        	*/
         	if(menu.equals(this.buttonInfo.getButtonId())) {
         		this.changePage(STBPage.Info);
         		return;

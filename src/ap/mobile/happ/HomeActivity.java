@@ -1,9 +1,12 @@
 package ap.mobile.happ;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,6 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import ap.mobile.happ.base.AppConfig;
+import ap.mobile.happ.base.News;
+import ap.mobile.happ.base.NewsTicker;
 import ap.mobile.happ.interfaces.DefaultContentInterface;
 import ap.mobile.happ.tasks.DefaultTask;
 import ap.mobile.happ.tasks.WeatherTask;
@@ -29,7 +34,6 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 
 	private MainNavigation mainNavigation;
 	private MainNavigationButton buttonTV;
-	private MainNavigationButton buttonRadio;
     private MainNavigationButton buttonVod;
     private MainNavigationButton buttonInfo;
 	private MainNavigationButton buttonInternet;
@@ -41,7 +45,7 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 	private TextView welcomeText;
 	
 	private boolean ready = false;
-	
+	private Handler tickerHandler = new Handler();
 	
 	private Runnable clockRunnable = new Runnable() {
 		
@@ -60,6 +64,7 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 	private View rootLayout;
 	private TextView hotelNameText;
 	private String cityName;
+	private TextView newsTickerText;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,7 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
         this.hotelNameText = (TextView) this.findViewById(R.id.hotelNameText);
         this.mainProgress = (ProgressBar) this.findViewById(R.id.mainProgress);
         this.welcomeText = (TextView) this.findViewById(R.id.homeWelcomeText);
+        this.newsTickerText = (TextView) this.findViewById(R.id.homeNewsTicker);
         this.rootLayout = this.findViewById(R.id.rootLayout);
         this.rootLayout.setVisibility(View.VISIBLE);
         this.mainScreenCover = this.findViewById(R.id.mainScreenCover);
@@ -78,7 +84,6 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
         this.mainNavigation = (MainNavigation) this.findViewById(R.id.mainNavigation);
         
         this.buttonTV = new MainNavigationButton(this, "mainButtonTV", "TV", R.drawable.bt_main_nav_tv);
-        this.buttonRadio = new MainNavigationButton(this, "mainButtonRadio", "Radio", R.drawable.bt_main_nav_radio);
         this.buttonVod = new MainNavigationButton(this, "mainButtonVod", "Video on Demand", R.drawable.bt_main_nav_video);
         this.buttonInternet = new MainNavigationButton(this, "mainButtonInternet", "Internet", R.drawable.bt_main_nav_internet);
         this.buttonInfo = new MainNavigationButton(this, "mainButtonInfo", "Hotel Information", R.drawable.bt_main_nav_info);
@@ -86,7 +91,6 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
         this.buttonLanguage = new MainNavigationButton(this, "mainButtonLanguage", "Language", R.drawable.bt_main_nav_language);
                 
         this.mainNavigation.addButton(this.buttonTV);
-        this.mainNavigation.addButton(this.buttonRadio);
         this.mainNavigation.addButton(this.buttonVod);
         this.mainNavigation.addButton(this.buttonInternet);
         this.mainNavigation.addButton(this.buttonInfo);
@@ -135,12 +139,14 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
     	
     	this.mainNavigation.selectButton(0);
     	this.clockHandler.post(this.clockRunnable);
+    	this.tickerHandler.post(this.newsTickerRunnable);
     	super.onResume();
     }
     
     @Override
     protected void onPause() {
     	this.clockHandler.removeCallbacks(this.clockRunnable);
+    	this.tickerHandler.removeCallbacks(this.newsTickerRunnable);
     	super.onPause();
     }
 
@@ -195,4 +201,69 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 		this.statusText.setText("Unable to process default content data");
 		this.mainProgress.setVisibility(View.GONE);
 	}
+	
+	private Runnable newsTickerRunnable = new Runnable() {
+		
+		public int index = 0;
+		
+		@Override
+		public void run() {
+			final ArrayList<News> news = NewsTicker.getNews();
+			
+			if(newsTickerText != null) {
+				newsTickerText.animate()
+				.alpha(0)
+				.setDuration(1000)
+				.setListener(new AnimatorListenerAdapter() {
+					@Override
+					public void onAnimationEnd(Animator animation) {
+						// TODO Auto-generated method stub
+						super.onAnimationEnd(animation);
+						newsTickerText.setText(news.get(index).text);
+						newsTickerText.animate()
+						.alpha(1)
+						.setDuration(1000)
+						.setListener(new AnimatorListenerAdapter() {
+							public void onAnimationEnd(Animator animation) {
+								if(index < news.size()-1) index++;
+								else index = 0;
+								tickerHandler.postDelayed(newsTickerRunnable, 1000);
+							};
+						});
+						
+					}
+				});
+				
+				/*() {
+					
+					@Override
+					public void onAnimationStart(Animator animation) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void onAnimationRepeat(Animator animation) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void onAnimationEnd(Animator animation) {
+						
+					}
+					
+					@Override
+					public void onAnimationCancel(Animator animation) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				*/
+			}
+			
+		}
+	};
+		
+	
 }

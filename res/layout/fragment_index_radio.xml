@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-	<!-- 
+
+    <!--
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -20,21 +21,97 @@
     	</TableRow>
     </TableLayout>
     -->
-     
-    <GridView
-        android:id="@+id/indexRadioGrid"
-        android:layout_width="1148dp"
+
+    <LinearLayout
+        android:id="@+id/indexRadioContainer"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:columnWidth="160dp"
-        android:horizontalSpacing="4dp"
-        android:numColumns="7"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="4dp" >
-    </GridView>
-    
+        android:layout_marginTop="20dp" >
+
+        <GridView
+            android:id="@+id/indexRadioGrid"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:columnWidth="160dp"
+            android:horizontalSpacing="4dp"
+            android:numColumns="1"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="4dp" >
+        </GridView>
+
+        <LinearLayout
+            android:id="@+id/indexRadioPlayerContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="26dp" >
+
+            <LinearLayout
+                android:id="@+id/radioPlayerImageDescriptionContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/radioPlayerRadioLogo"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:id="@+id/radioPlayerNameDescriptionContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/radioPlayerRadioName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Radio Name"
+                        android:textColor="@color/white"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/radioPlayerRadioDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Radio description with a long text and long description"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/radioPlayerPlayPauseContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <ImageButton
+                    android:id="@+id/radioPlayerPlayPauseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/arrow2_right"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/radioPlayerPlayPauseLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Play"
+                    android:textSize="26sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/indexRadioStatusContainer"
         android:layout_width="wrap_content"
@@ -52,18 +129,17 @@
             android:layout_gravity="center"
             android:fontFamily="sans-serif-condensed"
             android:text="Loading Media..."
-            android:textSize="20sp"
             android:textColor="@color/white"
+            android:textSize="20sp"
             tools:ignore="HardcodedText,UnusedAttribute" />
 
         <ProgressBar
             android:id="@+id/indexRadioProgress"
             style="?android:attr/progressBarStyleHorizontal"
-            android:paddingTop="10dp"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:indeterminate="true" />
-
+            android:indeterminate="true"
+            android:paddingTop="10dp" />
     </LinearLayout>
 
 </FrameLayout>
