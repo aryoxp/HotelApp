@@ -7,12 +7,12 @@ import java.util.Locale;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,12 +25,13 @@ import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.News;
 import ap.mobile.happ.base.NewsTicker;
 import ap.mobile.happ.interfaces.DefaultContentInterface;
+import ap.mobile.happ.interfaces.LanguageDialogInterface;
 import ap.mobile.happ.tasks.DefaultTask;
 import ap.mobile.happ.tasks.WeatherTask;
 import ap.mobile.happ.views.MainNavigation;
 import ap.mobile.happ.views.MainNavigationButton;
 
-public class HomeActivity extends Activity implements OnClickListener, DefaultContentInterface {
+public class HomeActivity extends FragmentActivity implements OnClickListener, DefaultContentInterface, LanguageDialogInterface {
 
 	private MainNavigation mainNavigation;
 	private MainNavigationButton buttonTV;
@@ -157,9 +158,15 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 		//Toast.makeText(this, "Button clicked!", Toast.LENGTH_SHORT).show();
 		String tag = (String) v.getTag();
 		if(tag != null) {
-			Intent intent = new Intent(this, MainActivity.class);
-			intent.putExtra("menu", tag);
-			this.startActivity(intent);
+			if(tag.equals("mainButtonLanguage")) {
+				LanguageDialogFragment languageDialog = new LanguageDialogFragment();
+				languageDialog.setDialogCallback(this);
+				languageDialog.show(getSupportFragmentManager(), "languageDialog");
+			} else {
+				Intent intent = new Intent(this, MainActivity.class);
+				intent.putExtra("menu", tag);
+				this.startActivity(intent);
+			}
 			return;
 		} else {
 			Toast.makeText(this, "Error: Button tag is NULL", Toast.LENGTH_SHORT).show();
@@ -217,7 +224,6 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 				.setListener(new AnimatorListenerAdapter() {
 					@Override
 					public void onAnimationEnd(Animator animation) {
-						// TODO Auto-generated method stub
 						super.onAnimationEnd(animation);
 						newsTickerText.setText(news.get(index).text);
 						newsTickerText.animate()
@@ -230,40 +236,24 @@ public class HomeActivity extends Activity implements OnClickListener, DefaultCo
 								tickerHandler.postDelayed(newsTickerRunnable, 1000);
 							};
 						});
-						
 					}
 				});
 				
-				/*() {
-					
-					@Override
-					public void onAnimationStart(Animator animation) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-					@Override
-					public void onAnimationRepeat(Animator animation) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-					@Override
-					public void onAnimationEnd(Animator animation) {
-						
-					}
-					
-					@Override
-					public void onAnimationCancel(Animator animation) {
-						// TODO Auto-generated method stub
-						
-					}
-				});
-				*/
 			}
 			
 		}
 	};
-		
 	
+	@Override
+	public void onDialogDisplayed() {
+		View decorView = getWindow().getDecorView();
+    	int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    	              | View.SYSTEM_UI_FLAG_FULLSCREEN;
+    	decorView.setSystemUiVisibility(uiOptions);
+	}
+	
+	@Override
+	public void onLanguageSelected(String language) {
+		Toast.makeText(this, "Selected language: " + language, Toast.LENGTH_SHORT).show();
+	}
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_popup"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/languageDialogTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="DialogTitle"
+        android:textColor="@color/gray_dark"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <include
+        android:id="@+id/languageDialogSeparator"
+        android:layout_height="1dp"
+        android:layout_width="600dp"
+        android:minWidth="600dp"
+        layout="@layout/view_alert_horizontal_separator" />
+
+    <TextView
+        android:id="@+id/languageDialogText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Select your preferred language..."
+        android:textColor="@color/gray_font"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:id="@+id/flagButtonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/languageDialogEnButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_bg_selector"
+            android:drawableLeft="@drawable/en"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:text=""
+            android:textColor="@color/gray_dark"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/languageDialogIdButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/button_bg_selector"
+            android:drawableLeft="@drawable/id"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:textColor="@color/gray_dark"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</LinearLayout>

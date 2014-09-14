@@ -3,5 +3,26 @@
     <color name="black_overlay">#66000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-
+    <color name="text_normal">#777</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="red_transparent">#77ff0000</color>
+    <color name="green">#1fbba6</color>
+    <color name="green_light">#2dceb8</color>
+    <color name="green_mist">#93f9eb</color>
+    <color name="gray">#d5d5d5</color>
+    <color name="gray_light">#f3f3f3</color>
+    <color name="gray_dark">#686868</color>
+    <color name="white">#fff</color>
+    <color name="orange">#f7a22f</color>
+    <color name="orange_light">#77f7a22f</color>
+    <color name="blue">#5bc8ec</color>
+    <color name="red">#f75556</color>
+    <color name="black">#000000</color>
+    <color name="gray_semilight">#999999</color>
+    <color name="gray_line">#eeeeee</color>
+    <color name="orange_for_font">#f98122</color>
+    <color name="gray_font">#5c5c5c</color>
+    <color name="gray_navigation_font">#545454</color>
+    <color name="orange_hover">#FFAE55</color>
+    
 </resources>
