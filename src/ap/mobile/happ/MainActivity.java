@@ -54,6 +54,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
         		this.changePage(STBPage.Info);
         		return;
         	}
+        	if(menu.equals(this.buttonVod.getButtonId())) {
+        		this.changePage(STBPage.VideoOnDemand);
+        		return;
+        	}
         }
         
         // default is TV
@@ -77,6 +81,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 		case TV:
 			this.buttonTV.requestFocus();
 			break;
+		case VideoOnDemand:
+			this.buttonVod.requestFocus();
+			break;
 		case Radio:
 			this.buttonRadio.requestFocus();
 			break;
@@ -97,6 +104,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 			
 			if(tag.equals("mainButtonHome")) {
 				this.finish();
+				return;
+			}
+			if(tag.equals("mainButtonVod")) {
+				this.changePage(STBPage.VideoOnDemand);
 				return;
 			}
 			if(tag.equals("mainButtonTV")) {
@@ -133,6 +144,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 			fragment = BrowseRadioFragment.getInstance(this);
 			break;
 		case TV:
+			fragment = BrowseTVFragment.getInstance(this);
+			break;
+		case VideoOnDemand:
+			fragment = BrowseVodFragment.getInstance(this);
+			break;
 		default:
 			fragment = BrowseTVFragment.getInstance(this);
 			break;

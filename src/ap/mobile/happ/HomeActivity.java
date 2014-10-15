@@ -22,16 +22,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import ap.mobile.happ.base.AppConfig;
-import ap.mobile.happ.base.News;
-import ap.mobile.happ.base.NewsTicker;
+import ap.mobile.happ.base.RunningText;
 import ap.mobile.happ.interfaces.DefaultContentInterface;
 import ap.mobile.happ.interfaces.LanguageDialogInterface;
+import ap.mobile.happ.interfaces.RunningTextInterface;
 import ap.mobile.happ.tasks.DefaultTask;
+import ap.mobile.happ.tasks.RunningTextTask;
 import ap.mobile.happ.tasks.WeatherTask;
 import ap.mobile.happ.views.MainNavigation;
 import ap.mobile.happ.views.MainNavigationButton;
 
-public class HomeActivity extends FragmentActivity implements OnClickListener, DefaultContentInterface, LanguageDialogInterface {
+public class HomeActivity extends FragmentActivity 
+	implements OnClickListener, DefaultContentInterface, LanguageDialogInterface,
+	RunningTextInterface {
 
 	private MainNavigation mainNavigation;
 	private MainNavigationButton buttonTV;
@@ -47,6 +50,7 @@ public class HomeActivity extends FragmentActivity implements OnClickListener, D
 	
 	private boolean ready = false;
 	private Handler tickerHandler = new Handler();
+	private ArrayList<RunningText> runningTexts = new ArrayList<RunningText>();
 	
 	private Runnable clockRunnable = new Runnable() {
 		
@@ -109,11 +113,11 @@ public class HomeActivity extends FragmentActivity implements OnClickListener, D
         DefaultTask defaultTask = new DefaultTask(this, this);
         defaultTask.execute(AppConfig.baseUrl + "json/default");
         
-        
-        
-        
-        
         this.clockHandler = new Handler();
+        
+        RunningTextTask runningTextTask = new RunningTextTask(this);
+        runningTextTask.execute("http://ubcreative.net/apps/hotel/json/runningtext");
+        
     }
 
 	private void loadWeatherInformation() {
@@ -140,7 +144,11 @@ public class HomeActivity extends FragmentActivity implements OnClickListener, D
     	
     	this.mainNavigation.selectButton(0);
     	this.clockHandler.post(this.clockRunnable);
-    	this.tickerHandler.post(this.newsTickerRunnable);
+    	if(this.runningTexts !=null && this.runningTexts.size() > 0)
+    		this.tickerHandler.post(this.newsTickerRunnable);
+    	else {
+    		new RunningTextTask(this).execute("http://ubcreative.net/apps/hotel/json/runningtext");
+    	}
     	super.onResume();
     }
     
@@ -197,7 +205,7 @@ public class HomeActivity extends FragmentActivity implements OnClickListener, D
 		
 		float height = (float) -this.mainScreenCover.getHeight();
 		TranslateAnimation ta = new TranslateAnimation(0, 0, 0, height);
-		ta.setDuration(1000);
+		ta.setDuration(500);
 		this.mainScreenCover.startAnimation(ta);
 		this.mainScreenCover.setVisibility(View.GONE);
 		this.ready = true;
@@ -215,7 +223,6 @@ public class HomeActivity extends FragmentActivity implements OnClickListener, D
 		
 		@Override
 		public void run() {
-			final ArrayList<News> news = NewsTicker.getNews();
 			
 			if(newsTickerText != null) {
 				newsTickerText.animate()
@@ -225,15 +232,15 @@ public class HomeActivity extends FragmentActivity implements OnClickListener, D
 					@Override
 					public void onAnimationEnd(Animator animation) {
 						super.onAnimationEnd(animation);
-						newsTickerText.setText(news.get(index).text);
+						newsTickerText.setText(runningTexts.get(index).headline);
 						newsTickerText.animate()
 						.alpha(1)
 						.setDuration(1000)
 						.setListener(new AnimatorListenerAdapter() {
 							public void onAnimationEnd(Animator animation) {
-								if(index < news.size()-1) index++;
+								if(index < runningTexts.size()-1) index++;
 								else index = 0;
-								tickerHandler.postDelayed(newsTickerRunnable, 1000);
+								tickerHandler.postDelayed(newsTickerRunnable, 5000);
 							};
 						});
 					}
@@ -255,5 +262,22 @@ public class HomeActivity extends FragmentActivity implements OnClickListener, D
 	@Override
 	public void onLanguageSelected(String language) {
 		Toast.makeText(this, "Selected language: " + language, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onRunningTextLoaded(ArrayList<RunningText> result) {
+		this.runningTexts = result;
+		this.tickerHandler.post(this.newsTickerRunnable);
+	}
+
+	@Override
+	public void onPreLoading() {
+		this.newsTickerText.setText("Loading...");
+	}
+
+	@Override
+	public void onRunningTextError(String error) {
+		this.newsTickerText.setText("--");
+		Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
 	}
 }

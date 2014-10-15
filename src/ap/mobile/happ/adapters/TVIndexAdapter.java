@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class TVIndexAdapter extends BaseAdapter {
 
 	private class TVItemViewHolder {
 		TextView label;
+		TextView description;
 		ImageView logo;
 	}
 	
@@ -57,6 +59,7 @@ public class TVIndexAdapter extends BaseAdapter {
 			vh = new TVItemViewHolder();
 			vh.label = (TextView) convertView.findViewById(R.id.label);
 			vh.logo = (ImageView) convertView.findViewById(R.id.logo);
+			vh.description = (TextView) convertView.findViewById(R.id.itemDescription);
 			convertView.setTag(vh);			
 		} else {
 			vh = (TVItemViewHolder) convertView.getTag();
@@ -64,6 +67,7 @@ public class TVIndexAdapter extends BaseAdapter {
 
 		TVMedia media = this.TVMedias.get(position);
 		vh.label.setText(media.name);
+		vh.description.setText(Html.fromHtml(media.description));
 		try {
 			String logoPath = media.logo;
 			if(!logoPath.equals(null)) {
