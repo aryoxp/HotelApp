@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Beranda</string>
+    <string name="welcome">Selamat Datang</string>
+    <string name="welcome_to">Selamat Datang di %1$s</string>
+    <string name="tv">Siaran TV</string>
+    <string name="vod">Video On Demand</string>
+    <string name="internet">Internet</string>
+    <string name="info_hotel">Informasi Hotel</string>
+    <string name="setting">Setting</string>
+    <string name="language">Bahasa</string>
+    <string name="unable_to_process">Tidak dapat mengolah data</string>
+    <string name="complete">Selesai!</string>
+    <string name="loading">Sedang memuat...</string>
+    <string name="getting_information">Memuat informasi dari server...</string>
+    <string name="processing_content">Mengolah konten...</string>
+    <string name="news_and_events">Berita dan Acara</string>
+    <string name="not_implemented">Belum diimplementasikan</string>
+</resources>

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import ap.mobile.happ.R;
 import ap.mobile.happ.base.AppConfig;
 import ap.mobile.happ.base.DefaultContent;
 import ap.mobile.happ.interfaces.DefaultContentInterface;
@@ -22,19 +23,21 @@ public class DefaultTask extends AsyncTask<String, Void, String> {
 	private String cityName;
 	private String language;
 	private String hotelName;
+	private Context context;
 
 	public DefaultTask(Context context, DefaultContentInterface defaultContentInterface){
 		this.defaultContentInterface = defaultContentInterface;
+		this.context = context;
 	}
 	
 	@Override
 	protected String doInBackground(String... params) {
 		try {
-			this.progressText = "Getting Information From Server...";
+			this.progressText = this.context.getString(R.string.getting_information);
 			this.publishProgress();
 			String url = params[0];
 			String result = RestClient.GET(url);
-			this.progressText = "Processing Content...";
+			this.progressText = this.context.getString(R.string.processing_content);
 			this.publishProgress();
 			DefaultContent content = DefaultContentParser.Parse(result);
 			URL bitmapUrl = new URL(AppConfig.baseUrl + "image/"+content.backgroundUrl);

@@ -83,7 +83,7 @@ public class LanguageDialogFragment extends DialogFragment implements OnClickLis
 			language = "en";
 			break;
 		case R.id.languageDialogIdButton:
-			language = "id";
+			language = "in";
 			break;
 		default:
 			language = "en";

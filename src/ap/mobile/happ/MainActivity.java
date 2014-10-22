@@ -33,11 +33,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 		
 		this.sidebar = (Sidebar) this.findViewById(R.id.mainSidebar);
 		
-		this.buttonHome = new SidebarButton(this, "mainButtonHome", "Home", R.drawable.bt_main_nav_home);
-		this.buttonTV = new SidebarButton(this, "mainButtonTV", "TV", R.drawable.bt_main_nav_tv);
-        this.buttonVod = new SidebarButton(this, "mainButtonVod", "Video on Demand", R.drawable.bt_main_nav_video);
-        this.buttonInternet = new SidebarButton(this, "mainButtonInternet", "Internet", R.drawable.bt_main_nav_internet);
-        this.buttonInfo = new SidebarButton(this, "mainButtonInfo", "Hotel Information", R.drawable.bt_main_nav_info);
+		this.buttonHome = new SidebarButton(this, "mainButtonHome", getString(R.string.home), R.drawable.bt_main_nav_home);
+		this.buttonTV = new SidebarButton(this, "mainButtonTV", getString(R.string.tv), R.drawable.bt_main_nav_tv);
+        this.buttonVod = new SidebarButton(this, "mainButtonVod", getString(R.string.vod), R.drawable.bt_main_nav_video);
+        this.buttonInternet = new SidebarButton(this, "mainButtonInternet", getString(R.string.internet), R.drawable.bt_main_nav_internet);
+        this.buttonInfo = new SidebarButton(this, "mainButtonInfo", getString(R.string.info_hotel), R.drawable.bt_main_nav_info);
                 
         this.sidebar.addButton(this.buttonHome);
         this.sidebar.addButton(this.buttonTV);
@@ -125,7 +125,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, M
 			
 		}
 		
-		Toast.makeText(getApplicationContext(), "Not implemented.", Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), getString(R.string.not_implemented), Toast.LENGTH_LONG).show();
 	}
 
 	@Override

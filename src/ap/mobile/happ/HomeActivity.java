@@ -8,10 +8,13 @@ import java.util.Locale;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.View;
@@ -84,16 +87,15 @@ public class HomeActivity extends FragmentActivity
         this.rootLayout = this.findViewById(R.id.rootLayout);
         this.rootLayout.setVisibility(View.VISIBLE);
         this.mainScreenCover = this.findViewById(R.id.mainScreenCover);
-        this.welcomeText.setText("Welcome to UB Hotel");
         
         this.mainNavigation = (MainNavigation) this.findViewById(R.id.mainNavigation);
         
-        this.buttonTV = new MainNavigationButton(this, "mainButtonTV", "TV", R.drawable.bt_main_nav_tv);
-        this.buttonVod = new MainNavigationButton(this, "mainButtonVod", "Video on Demand", R.drawable.bt_main_nav_video);
-        this.buttonInternet = new MainNavigationButton(this, "mainButtonInternet", "Internet", R.drawable.bt_main_nav_internet);
-        this.buttonInfo = new MainNavigationButton(this, "mainButtonInfo", "Hotel Information", R.drawable.bt_main_nav_info);
-        this.buttonSetting = new MainNavigationButton(this, "mainButtonSetting", "Setting", R.drawable.bt_main_nav_setting);
-        this.buttonLanguage = new MainNavigationButton(this, "mainButtonLanguage", "Language", R.drawable.bt_main_nav_language);
+        this.buttonTV = new MainNavigationButton(this, "mainButtonTV", getString(R.string.tv), R.drawable.bt_main_nav_tv);
+        this.buttonVod = new MainNavigationButton(this, "mainButtonVod", getString(R.string.vod), R.drawable.bt_main_nav_video);
+        this.buttonInternet = new MainNavigationButton(this, "mainButtonInternet", getString(R.string.internet), R.drawable.bt_main_nav_internet);
+        this.buttonInfo = new MainNavigationButton(this, "mainButtonInfo", getString(R.string.info_hotel), R.drawable.bt_main_nav_info);
+        this.buttonSetting = new MainNavigationButton(this, "mainButtonSetting", getString(R.string.setting), R.drawable.bt_main_nav_setting);
+        this.buttonLanguage = new MainNavigationButton(this, "mainButtonLanguage", getString(R.string.language), R.drawable.bt_main_nav_language);
                 
         this.mainNavigation.addButton(this.buttonTV);
         this.mainNavigation.addButton(this.buttonVod);
@@ -195,9 +197,9 @@ public class HomeActivity extends FragmentActivity
 	@Override
 	public void onDefaultContentLoaded(Bitmap background, String hotelName, String welcomeText,
 			String cityName, String language) {
-		this.statusText.setText("Complete!");
+		this.statusText.setText(getString(R.string.complete));
 		this.rootLayout.setBackground(new BitmapDrawable(getResources(),background));
-		this.hotelNameText.setText(hotelName);
+		this.hotelNameText.setText(getResources().getString(R.string.welcome_to, hotelName));
 		this.cityName = cityName;
 		this.welcomeText.setText(Html.fromHtml(welcomeText));
 		
@@ -213,7 +215,7 @@ public class HomeActivity extends FragmentActivity
 
 	@Override
 	public void onDefaultContentError(String errorText) {
-		this.statusText.setText("Unable to process default content data");
+		this.statusText.setText(getString(R.string.unable_to_process));
 		this.mainProgress.setVisibility(View.GONE);
 	}
 	
@@ -262,6 +264,24 @@ public class HomeActivity extends FragmentActivity
 	@Override
 	public void onLanguageSelected(String language) {
 		Toast.makeText(this, "Selected language: " + language, Toast.LENGTH_SHORT).show();
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		String lang = prefs.getString("locale_override", "in");
+		if(lang.equals(language)) return;
+		
+		prefs.edit().putString("locale_override", language).commit();
+		HotelApplication.updateLanguage(getApplicationContext(), language);
+		if (Build.VERSION.SDK_INT >= 11) {
+		    recreate();
+		} else {
+		    Intent intent = getIntent();
+		    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		    finish();
+		    overridePendingTransition(0, 0);
+		    startActivity(intent);
+		    overridePendingTransition(0, 0);
+		}
 	}
 
 	@Override
@@ -272,7 +292,7 @@ public class HomeActivity extends FragmentActivity
 
 	@Override
 	public void onPreLoading() {
-		this.newsTickerText.setText("Loading...");
+		this.newsTickerText.setText(getString(R.string.loading));
 	}
 
 	@Override

@@ -42,8 +42,7 @@
             android:padding="16dp"
             android:textColor="@color/white"
             android:background="#33FFFFFF"
-            android:text="News and Events"
-            tools:ignore="HardcodedText"
+            android:text="@string/news_and_events"
              />
 
         <TextView
